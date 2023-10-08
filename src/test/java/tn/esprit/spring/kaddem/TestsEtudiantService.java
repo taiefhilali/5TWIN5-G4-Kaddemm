@@ -10,14 +10,13 @@ import tn.esprit.spring.kaddem.repositories.EtudiantRepository;
 import tn.esprit.spring.kaddem.services.EtudiantServiceImpl;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 
-public class TestsEtudiantService {
+public class TestsEtudiantService{
 
     @Mock
     private EtudiantRepository etudiantRepository;
@@ -31,18 +30,15 @@ public class TestsEtudiantService {
     }
 
     @Test
-    public void testRetrieveAllEtudiantsWithMock() {
-        // Arrange
+    public void RetrieveAllEtudiantsWithMock() {
         List<Etudiant> etudiants = new ArrayList<>();
         etudiants.add(new Etudiant("John", "Doe"));
         etudiants.add(new Etudiant("Jane", "Smith"));
 
         when(etudiantRepository.findAll()).thenReturn(etudiants);
 
-        // Act
         List<Etudiant> retrievedEtudiants = etudiantService.retrieveAllEtudiants();
 
-        // Assert
         assertEquals(etudiants.size(), retrievedEtudiants.size());
     }
 
@@ -52,7 +48,11 @@ public class TestsEtudiantService {
         Etudiant etudiant1 = new Etudiant("John", "Doe");
         Etudiant etudiant2 = new Etudiant("Jane", "Smith");
 
-        when(etudiantRepository.findAll()).thenReturn(Arrays.asList(etudiant1, etudiant2));
+        // Stub the repository's behavior
+        List<Etudiant> etudiants = new ArrayList<>();
+        etudiants.add(etudiant1);
+        etudiants.add(etudiant2);
+        when(etudiantRepository.findAll()).thenReturn(etudiants);
 
         // Act
         List<Etudiant> retrievedEtudiants = etudiantService.retrieveAllEtudiants();
@@ -60,6 +60,7 @@ public class TestsEtudiantService {
         // Assert
         assertEquals(2, retrievedEtudiants.size());
     }
+
 
 
 
