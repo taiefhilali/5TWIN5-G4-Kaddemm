@@ -10,6 +10,7 @@ import tn.esprit.spring.kaddem.repositories.ContratRepository;
 import tn.esprit.spring.kaddem.repositories.DepartementRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 
@@ -21,6 +22,12 @@ public class DepartementServiceImpl implements IDepartementService{
 		return (List<Departement>) departementRepository.findAll();
 	}
 
+	@Override
+	public Departement getDepartementById(Integer id) {
+		Optional<Departement> optionalDepartement = departementRepository.findById(id);
+		return optionalDepartement.orElse(null);
+	}
+
 	public Departement addDepartement (Departement d){
 		return departementRepository.save(d);
 	}
@@ -29,9 +36,19 @@ public class DepartementServiceImpl implements IDepartementService{
 		return departementRepository.save(d);
 	}
 
-	public  Departement retrieveDepartement (Integer idDepart){
-		return departementRepository.findById(idDepart).get();
+
+	public Departement retrieveDepartement(Integer idDepart) {
+		Optional<Departement> optionalDepartement = departementRepository.findById(idDepart);
+
+		if (optionalDepartement.isPresent()) {
+			return optionalDepartement.get();
+		} else {
+			// Handle the case where Departement is not found
+			throw new DepartementNotFoundException("Departement not found for id: " + idDepart);
+		}
 	}
+
+
 	public  void deleteDepartement(Integer idDepartement){
 		Departement d=retrieveDepartement(idDepartement);
 		departementRepository.delete(d);

@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
+import tn.esprit.spring.kaddem.Dto.EquipeDTO;
 import tn.esprit.spring.kaddem.entities.Equipe;
 import tn.esprit.spring.kaddem.services.IEquipeService;
 
@@ -28,10 +29,29 @@ public class EquipeRestController {
 
 	// http://localhost:8089/Kaddem/equipe/add-equipe
 	@PostMapping("/add-equipe")
-	public Equipe addEquipe(@RequestBody Equipe e) {
-		Equipe equipe = equipeService.addEquipe(e);
+	public EquipeDTO addEquipe(@RequestBody EquipeDTO equipeDTO) {
+		Equipe equipe = convertToEquipe(equipeDTO);
+		equipe = equipeService.addEquipe(equipe);
+		return convertToEquipeDTO(equipe);
+	}
+
+	private Equipe convertToEquipe(EquipeDTO equipeDTO) {
+		Equipe equipe = new Equipe();
+		equipe.setNomEquipe(equipeDTO.getNomEquipe());
+		equipe.setNiveau(equipeDTO.getNiveau());
+		// Set other properties as needed
 		return equipe;
 	}
+
+	private EquipeDTO convertToEquipeDTO(Equipe equipe) {
+		EquipeDTO equipeDTO = new EquipeDTO();
+		equipeDTO.setIdEquipe(equipe.getIdEquipe());
+		equipeDTO.setNomEquipe(equipe.getNomEquipe());
+		equipeDTO.setNiveau(equipe.getNiveau());
+		// Set other properties as needed
+		return equipeDTO;
+	}
+
 
 	// http://localhost:8089/Kaddem/equipe/remove-equipe/1
 	@DeleteMapping("/remove-equipe/{equipe-id}")
@@ -41,9 +61,11 @@ public class EquipeRestController {
 
 	// http://localhost:8089/Kaddem/equipe/update-equipe
 	@PutMapping("/update-equipe")
-	public Equipe updateEtudiant(@RequestBody Equipe e) {
-		Equipe equipe= equipeService.updateEquipe(e);
-		return equipe;
+
+	public EquipeDTO updateEtudiant(@RequestBody EquipeDTO equipeDTO) {
+		Equipe equipe = convertToEquipe(equipeDTO);
+		equipe = equipeService.updateEquipe(equipe);
+		return convertToEquipeDTO(equipe);
 	}
 
 	@Scheduled(cron="0 0 13 * * *")

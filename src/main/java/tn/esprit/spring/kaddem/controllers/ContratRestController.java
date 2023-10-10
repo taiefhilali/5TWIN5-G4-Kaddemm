@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
+import tn.esprit.spring.kaddem.Dto.ContratDTO;
 import tn.esprit.spring.kaddem.entities.Contrat;
 import tn.esprit.spring.kaddem.services.ContratServiceImpl;
 import tn.esprit.spring.kaddem.services.IContratService;
@@ -16,12 +17,51 @@ import java.util.List;
 @AllArgsConstructor
 @RequestMapping("/contrat")
 public class ContratRestController {
+
 	IContratService contratService;
 	// http://localhost:8089/Kaddem/contrat/retrieve-all-contrats
+
+
+	@PostMapping("/add-contrat")
+	public ContratDTO addContrat(@RequestBody ContratDTO contratDTO) {
+		Contrat contrat = convertToContrat(contratDTO);
+		contrat = contratService.addContrat(contrat);
+		return convertToContratDTO(contrat);
+	}
+
+	private Contrat convertToContrat(ContratDTO contratDTO) {
+		Contrat contrat = new Contrat();
+		contrat.setIdContrat(contratDTO.getIdContrat());
+		contrat.setDateDebutContrat(contratDTO.getDateDebutContrat());
+		contrat.setDateFinContrat(contratDTO.getDateFinContrat());
+		contrat.setSpecialite(contratDTO.getSpecialite());
+		contrat.setArchive(contratDTO.getArchive());
+		contrat.setMontantContrat(contratDTO.getMontantContrat());
+
+
+		return contrat;
+	}
+
+	private ContratDTO convertToContratDTO(Contrat contrat) {
+		ContratDTO contratDTO = new ContratDTO();
+		contratDTO.setIdContrat(contrat.getIdContrat());
+		contratDTO.setDateDebutContrat(contrat.getDateDebutContrat());
+		contratDTO.setDateFinContrat(contrat.getDateFinContrat());
+		contratDTO.setSpecialite(contrat.getSpecialite());
+		contratDTO.setArchive(contrat.getArchive());
+		contratDTO.setMontantContrat(contrat.getMontantContrat());
+
+		// You might need additional mappings based on your specific needs
+
+		return contratDTO;
+	}
+
+
+
 	@GetMapping("/retrieve-all-contrats")
 	public List<Contrat> getContrats() {
-		List<Contrat> listContrats = contratService.retrieveAllContrats();
-		return listContrats;
+		return contratService.retrieveAllContrats();
+
 	}
 	// http://localhost:8089/Kaddem/contrat/retrieve-contrat/8
 	@GetMapping("/retrieve-contrat/{contrat-id}")
@@ -30,11 +70,7 @@ public class ContratRestController {
 	}
 
 	// http://localhost:8089/Kaddem/econtrat/add-contrat
-	@PostMapping("/add-contrat")
-	public Contrat addContrat(@RequestBody Contrat c) {
-		Contrat contrat = contratService.addContrat(c);
-		return contrat;
-	}
+
 
 	// http://localhost:8089/Kaddem/contrat/remove-contrat/1
 	@DeleteMapping("/remove-contrat/{contrat-id}")
@@ -43,16 +79,15 @@ public class ContratRestController {
 	}
 
 	// http://localhost:8089/Kaddem/contrat/update-contrat
+
+
+
 	@PutMapping("/update-contrat")
-	public Contrat updateContrat(@RequestBody Contrat c) {
-		Contrat contrat= contratService.updateContrat(c);
-		return contrat;
+	public ContratDTO updateContrat(@RequestBody ContratDTO contratDTO) {
+		Contrat updatedContrat = contratService.updateContrat(contratDTO);
+		return convertToContratDTO(updatedContrat);
 	}
 
-		/*@PutMapping(value = "/assignContratToEtudiant/{ce}/{nomE}/{prenomE}")
-		public Contrat assignContratToEtudiant (Contrat ce, String nomE, String prenomE){
-		return 	(contratService.affectContratToEtudiant(ce, nomE, prenomE));
-		}*/
 
 	@PutMapping(value = "/assignContratToEtudiant/{idContrat}/{nomE}/{prenomE}")
 	public Contrat assignContratToEtudiant (Integer idContrat, String nomE, String prenomE){
@@ -72,7 +107,6 @@ public class ContratRestController {
     @Scheduled(cron="0 0 13 * * *")//(cron="0 0 13 * * ?")(fixedRate =21600)
 	@PutMapping(value = "/majStatusContrat")
 	public void majStatusContrat (){
-		//return 	(contratService.affectContratToEtudiant(ce, nomE, prenomE));
 		contratService.retrieveAndUpdateStatusContrat();
 
 	}

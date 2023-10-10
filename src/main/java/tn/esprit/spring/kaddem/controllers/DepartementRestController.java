@@ -2,6 +2,7 @@ package tn.esprit.spring.kaddem.controllers;
 
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import tn.esprit.spring.kaddem.Dto.DepartementDTO;
 import tn.esprit.spring.kaddem.entities.Departement;
 import tn.esprit.spring.kaddem.services.IDepartementService;
 
@@ -25,10 +26,22 @@ public class DepartementRestController {
 	}
 
 	// http://localhost:8089/Kaddem/departement/add-departement
-	@PostMapping("/add-departement")
+	/*@PostMapping("/add-departement")
 	public Departement addDepartement(@RequestBody Departement d) {
 		Departement departement = departementService.addDepartement(d);
 		return departement;
+	}*/
+	@GetMapping("/{id}")
+	public DepartementDTO getDepartement(@PathVariable("id") Integer id) {
+		Departement departement = departementService.getDepartementById(id);
+		return convertToDepartementDTO(departement);
+	}
+	private DepartementDTO convertToDepartementDTO(Departement departement) {
+		DepartementDTO departementDTO = new DepartementDTO();
+		departementDTO.setIdDepart(departement.getIdDepart());
+		departementDTO.setNomDepart(departement.getNomDepart());
+		// Set other properties as needed
+		return departementDTO;
 	}
 
 	// http://localhost:8089/Kaddem/departement/remove-departement/1
