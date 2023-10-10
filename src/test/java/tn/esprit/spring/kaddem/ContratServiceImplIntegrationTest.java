@@ -46,7 +46,7 @@ class ContratServiceImplIntegrationTest {
         assertEquals(contratToAdd.getDateDebutContrat(), addedContrat.getDateDebutContrat());
         assertEquals(contratToAdd.getDateFinContrat(), addedContrat.getDateFinContrat());
         assertEquals(contratToAdd.getSpecialite(), addedContrat.getSpecialite());
-        assertEquals(contratToAdd.getArchive(), addedContrat.getArchive());
+        assertEquals(contratToAdd.isArchive(), addedContrat.isArchive());
         assertEquals(contratToAdd.getMontantContrat(), addedContrat.getMontantContrat());
     }
 
