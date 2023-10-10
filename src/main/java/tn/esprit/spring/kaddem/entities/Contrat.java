@@ -72,7 +72,8 @@ public class Contrat implements Serializable{
     public void setSpecialite(Specialite specialite) {
         this.specialite = specialite;
     }
-    public Boolean getArchive() {
+
+    public boolean isArchive() {
         return archive;
     }
     public void setArchive(Boolean archive) {

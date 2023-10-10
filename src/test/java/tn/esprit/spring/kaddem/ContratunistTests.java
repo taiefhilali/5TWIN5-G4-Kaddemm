@@ -24,7 +24,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 @SpringBootTest
 @Transactional
-public class ContratunistTests {
+ class ContratunistTests {
     @Autowired
     private ContratRepository contratRepository;
 
@@ -45,7 +45,7 @@ public class ContratunistTests {
         assertEquals(contratToAdd.getDateDebutContrat(), addedContrat.getDateDebutContrat());
         assertEquals(contratToAdd.getDateFinContrat(), addedContrat.getDateFinContrat());
         assertEquals(contratToAdd.getSpecialite(), addedContrat.getSpecialite());
-        assertEquals(contratToAdd.getArchive(), addedContrat.getArchive());
+        assertEquals(contratToAdd.isArchive(), addedContrat.isArchive());
         assertEquals(contratToAdd.getMontantContrat(), addedContrat.getMontantContrat());
     }
     @Test
