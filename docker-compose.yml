@@ -1,0 +1,19 @@
+version: "3"
+services:
+  mysqldb:
+    image: mysql:latest
+    container_name: mysqldb
+    environment:
+
+      MYSQL_DATABASE: kaddemdb
+    restart: unless-stopped
+    volumes:
+      - /home/mysql/data:/var/lib/mysql -d mysql
+
+  kaddemproject:
+    image: taiefhilali/taiefhilali-5twin5-g4-kaddem
+    ports:
+      - 8089:8089
+    restart: on-failure
+    depends_on:
+      - mysqldb
