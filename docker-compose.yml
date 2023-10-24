@@ -2,10 +2,11 @@ version: '3.3'
 
 services:
   mysqldb:
+    image: mysql:latest
     container_name: mysqldb
-    image: mysql:8
     volumes:
-      - /home/mysql/data:/var/lib/mysql
+      - /home/mysql/data:/var/lib/mysql -d mysql
+    restart: unless-stopped
     environment:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=kaddem
@@ -14,8 +15,8 @@ services:
   kaddem:
     image: zeinebharaketi/zeinebharaketi-5twin5-g4-kaddem
     ports:
-      - "8091:8091"
-    restart: unless-stopped
+      - "8089:8089"
+    restart: on-failure
     environment:
       - SPRING_DATASOURCE_URL=jdbc:mysql://mysqldb:3306/kaddem?autoReconnect=true&failOverReadOnly=false&maxReconnects=10
       - SPRING_DATASOURCE_USERNAME=root

@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 
-public class TestsEtudiantService{
+public class TestsEtudiantService {
 
     @Mock
     private EtudiantRepository etudiantRepository;
@@ -48,11 +48,8 @@ public class TestsEtudiantService{
         Etudiant etudiant1 = new Etudiant("John", "Doe");
         Etudiant etudiant2 = new Etudiant("Jane", "Smith");
 
-        // Stub the repository's behavior
-        List<Etudiant> etudiants = new ArrayList<>();
-        etudiants.add(etudiant1);
-        etudiants.add(etudiant2);
-        when(etudiantRepository.findAll()).thenReturn(etudiants);
+        etudiantRepository.save(etudiant1);
+        etudiantRepository.save(etudiant2);
 
         // Act
         List<Etudiant> retrievedEtudiants = etudiantService.retrieveAllEtudiants();
@@ -60,7 +57,6 @@ public class TestsEtudiantService{
         // Assert
         assertEquals(2, retrievedEtudiants.size());
     }
-
 
 
 
