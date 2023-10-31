@@ -1,25 +1,36 @@
-version: '3.3'
+version: "3.3"
 
 services:
-  mysqldb:
-    image: mysql:latest
-    container_name: mysqldb
-    volumes:
-      - /home/mysql/data:/var/lib/mysql -d mysql
-    restart: unless-stopped
-    environment:
-      - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=kaddem
-      - MYSQL_PASSWORD=root
-
-  kaddem:
-    image: zeinebharaketi/zeinebharaketi-5twin5-g4-kaddem
+  5TWIN5-G4-KADDEM:
+    container_name: zeinebharaketi-5twin5-g4-kaddem
+    build: .
     ports:
-      - "8089:8089"
-    restart: on-failure
+      - "8090:8089"
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:mysql://mysqldb:3306/kaddem?autoReconnect=true&failOverReadOnly=false&maxReconnects=10
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db-mysql:3306/khaddemApp?createDatabaseIfNotExist=true&useSSL=false&max_allowed_packet=15728640
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=root
+    image: "zeinebharaketi/zeinebharaketi-5twin5-g4-kaddem"
+    restart: unless-stopped
     depends_on:
-      - mysqldb
+      - db-mysql
+
+  db-mysql:
+    image: "mysql:latest"
+    container_name: db-mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+    ports:
+      - "3306:3306"
+    restart: unless-stopped
+
+  sonarqube:
+    image: sonarqube:8.9.7-community
+    ports:
+      - "9001:9000"
+      - "9092:9092"
+
+  nexus:
+    image: sonatype/nexus3
+    ports:
+      - "8082:8081"
