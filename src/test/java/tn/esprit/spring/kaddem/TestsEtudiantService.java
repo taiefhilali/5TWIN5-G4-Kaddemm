@@ -13,10 +13,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.when;
 
-
-public class TestsEtudiantService {
+class TestsEtudiantService {
 
     @Mock
     private EtudiantRepository etudiantRepository;
@@ -30,7 +29,7 @@ public class TestsEtudiantService {
     }
 
     @Test
-    public void RetrieveAllEtudiantsWithMock() {
+    void RetrieveAllEtudiantsWithMock() {
         List<Etudiant> etudiants = new ArrayList<>();
         etudiants.add(new Etudiant("John", "Doe"));
         etudiants.add(new Etudiant("Jane", "Smith"));
@@ -43,13 +42,16 @@ public class TestsEtudiantService {
     }
 
     @Test
-    public void testRetrieveAllEtudiantsWithoutMock() {
-        // Arrange: Assuming you have some test data in your repository
+    void testRetrieveAllEtudiantsWithoutMock() {
+        // Arrange
         Etudiant etudiant1 = new Etudiant("John", "Doe");
         Etudiant etudiant2 = new Etudiant("Jane", "Smith");
 
-        etudiantRepository.save(etudiant1);
-        etudiantRepository.save(etudiant2);
+        List<Etudiant> etudiants = new ArrayList<>();
+        etudiants.add(etudiant1);
+        etudiants.add(etudiant2);
+        
+        when(etudiantRepository.findAll()).thenReturn(etudiants);
 
         // Act
         List<Etudiant> retrievedEtudiants = etudiantService.retrieveAllEtudiants();
@@ -57,8 +59,4 @@ public class TestsEtudiantService {
         // Assert
         assertEquals(2, retrievedEtudiants.size());
     }
-
-
-
-
 }
