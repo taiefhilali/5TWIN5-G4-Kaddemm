@@ -1,5 +1,6 @@
 package tn.esprit.spring.kaddem;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -23,6 +24,11 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 @Transactional
 public class EquipeUnitTest {
+
+    @BeforeEach
+    public void setUp() {
+        equipeRepository.deleteAll();
+    }
     @Autowired
     private EquipeRepository equipeRepository;
 
@@ -80,12 +86,12 @@ public class EquipeUnitTest {
     public void testRetrieveAllEquipes() {
 
         Equipe equipe1 = new Equipe();
-        equipe1.setNomEquipe("Team 1");
+        equipe1.setNomEquipe("TeamRetrieve");
         equipe1.setNiveau(Niveau.JUNIOR);
         equipeRepository.save(equipe1);
 
         Equipe equipe2 = new Equipe();
-        equipe2.setNomEquipe("Team 2");
+        equipe2.setNomEquipe("TeamRetrieve 2");
         equipe2.setNiveau(Niveau.SENIOR);
         equipeRepository.save(equipe2);
 
