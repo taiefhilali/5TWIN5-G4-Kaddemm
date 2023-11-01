@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   5TWIN5-G4-KADDEMM:
-    container_name: KADDEMM
+    container_name: KADDEMMM
     ports:
       - "8089:8089"
     environment:
