@@ -7,19 +7,19 @@ services:
     ports:
       - "8090:8089"
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:mysql://db-mysql:3306/khaddemApp?createDatabaseIfNotExist=true&useSSL=false&max_allowed_packet=15728640&allowPublicKeyRetriev
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db-mysqlll:3306/khaddemApp?createDatabaseIfNotExist=true&useSSL=false&max_allowed_packet=15728640&allowPublicKeyRetriev
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=root
     image: "zeinebharaketi/zeinebharaketi-5twin5-g4-kaddem"
     restart: unless-stopped
     depends_on:
-      - db-mysql
+      - db-mysqlll
 
-  db-mysql:
+  db-mysqlll:
     image: "mysql:latest"
-    container_name: db-mysqll
+    container_name: db-mysqlll
     environment:
       - MYSQL_ROOT_PASSWORD=root
     ports:
-      - "3306:3306"
+      - "3307:3306"
     restart: unless-stopped
