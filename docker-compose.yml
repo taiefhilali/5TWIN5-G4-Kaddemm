@@ -20,5 +20,5 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=root
     ports:
-      - "3306:3306"
+      - "3307:3306"  # Change the port mapping to 3307:3306 or any available port
     restart: unless-stopped
