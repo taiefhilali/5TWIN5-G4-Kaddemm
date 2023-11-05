@@ -10,11 +10,27 @@
     </parent>
     <groupId>tn.esprit.spring</groupId>
     <artifactId>kaddem</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+<version>2.1.0</version>
     <name>kaddem</name>
     <description>kaddem</description>
     <properties>
         <java.version>1.8</java.version>
+	    <!-- Jacoco -->
+	        <!--<jacoco.version>0.8.6</jacoco.version>
+    <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+    <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+    <sonar.jacoco.reportPath>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPath>
+    <sonar.language>java</sonar.language>
+        <sonar.coverage.jacoco.xmlReportPaths>target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>-->
+
+	    <jacoco.version>0.8.6</jacoco.version>
+	    <sonar.core.codeCoveragePlugin>jacoco</sonar.core.codeCoveragePlugin>
+        <sonar.language>java</sonar.language>
+        <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+        <sonar.sources>src/main</sonar.sources>
+        <sonar.tests>src/test</sonar.tests>
+        <sonar.java.binaries>target/classes</sonar.java.binaries>
+        <sonar.coverage.jacoco.xmlReportPaths>target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
     </properties>
     <dependencies>
         <dependency>
@@ -47,7 +63,33 @@
             <version>1.6.9</version>
         </dependency>
 
+	     <!-- Prometheus & Grafana -->
+    <!--<dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-actuator</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>io.micrometer</groupId>
+        <artifactId>micrometer-registry-prometheus</artifactId>
+	        <version>1.5.5</version>
+
+    </dependency>-->
+
+	    <dependency>
+    <groupId>org.jacoco</groupId> 
+    <artifactId>jacoco-maven-plugin</artifactId>
+    <version>0.8.6</version>
+</dependency>
     </dependencies>
+
+            <!-- Deploy to Nexus -->
+	<distributionManagement>
+		<repository>
+			<id>deploymentRepo</id>
+			<name>Nexus Repository</name>
+			<url>http://172.10.0.140:8081/repository/maven-releases/</url>
+		</repository>
+	</distributionManagement>
 
     <build>
         <plugins>
@@ -63,7 +105,100 @@
                     </excludes>
                 </configuration>
             </plugin>
+		<plugin>
+<groupId>org.apache.maven.plugins</groupId>
+<artifactId>maven-surefire-plugin</artifactId>
+<version>2.14.1</version>
+<configuration>
+	       <!-- <argLine>${surefireArgLine}</argLine>--> <!-- Include the argLine here -->
+    <argLine>-Xmx1024m -XX:MaxPermSize=256m</argLine>
+
+<includes>
+<include>**/*Test.java</include>
+</includes>
+	
+</configuration>
+</plugin>
+
+		<!-- <plugin>
+    <groupId>org.jacoco</groupId>
+    <artifactId>jacoco-maven-plugin</artifactId>
+    <version>${jacoco.version}</version>
+    <executions>
+        <execution>
+            <id>jacoco-initialize</id>
+            <goals>
+                <goal>prepare-agent</goal>
+            </goals>
+        </execution>
+        <execution>
+            <id>jacoco-site</id>
+            <phase>package</phase>
+            <goals>
+                <goal>report</goal>
+            </goals>
+        </execution>
+    </executions>
+</plugin>-->
+ <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <version>0.8.7</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>prepare-agent</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>report</id>
+            <phase>test</phase>
+            <goals>
+              <goal>report</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+		<plugin>
+               <groupId>org.sonarsource.scanner.maven</groupId>
+               <artifactId>sonar-maven-plugin</artifactId>
+               <version>3.7.0.1746</version>
+             </plugin>
+        <!-- <plugin>
+         <groupId>org.jacoco</groupId>
+         <artifactId>jacoco-maven-plugin</artifactId>
+         <version>0.8.6</version>
+         <executions>
+           <execution>
+             <id>prepare-agent</id>
+             <goals>
+              <goal>prepare-agent</goal>
+             </goals>
+           </execution>
+           <execution>
+             <id>report</id>
+             <goals>
+              <goal>report</goal>
+             </goals>
+           </execution>
+		 <execution>
+    <id>post-unit-test</id>
+    <phase>test</phase>
+    <goals>
+        <goal>report</goal>
+    </goals>
+    <configuration>
+        <outputDirectory>${jacoco.path}</outputDirectory>
+    </configuration>
+</execution>
+
+         </executions>
+         </plugin>-->
+
+
         </plugins>
+
+	   
     </build>
 
 </project>
