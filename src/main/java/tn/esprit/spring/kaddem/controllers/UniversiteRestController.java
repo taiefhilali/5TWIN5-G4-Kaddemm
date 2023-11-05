@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.spring.kaddem.dtos.UniversiteDTO;
 import tn.esprit.spring.kaddem.entities.Departement;
-import tn.esprit.spring.kaddem.entities.Etudiant;
 import tn.esprit.spring.kaddem.entities.Universite;
 import tn.esprit.spring.kaddem.services.IUniversiteService;
 

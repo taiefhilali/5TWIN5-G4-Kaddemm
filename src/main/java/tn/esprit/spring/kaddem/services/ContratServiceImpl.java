@@ -51,7 +51,8 @@ ContratRepository contratRepository;
 		Integer nbContratssActifs=0;
 		if (contrats.isEmpty()) {
 			for (Contrat contrat : contrats) {
-				if (((contrat.getArchive())!=null)&& ((contrat.getArchive())!=false))  {
+				Boolean b=contrat.getArchive();
+				if (((contrat.getArchive())!=null)&& (Boolean.TRUE.equals(b)))  {
 					nbContratssActifs++;
 				}
 			}
@@ -71,7 +72,8 @@ ContratRepository contratRepository;
 		List<Contrat>contratsAarchiver=null;
 		for (Contrat contrat : contrats) {
 			Date dateSysteme = new Date();
-			if (contrat.getArchive()==false) {
+			boolean b =contrat.getArchive();
+			if (Boolean.TRUE.equals(b)) {
 				long differenceInTime = dateSysteme.getTime() - contrat.getDateFinContrat().getTime();
 				long differenceInDays = (differenceInTime / (1000 * 60 * 60 * 24)) % 365;
 				if (differenceInDays==15){

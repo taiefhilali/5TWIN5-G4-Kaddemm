@@ -6,8 +6,6 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.spring.kaddem.dtos.ContratDTO;
 import tn.esprit.spring.kaddem.entities.Contrat;
-import tn.esprit.spring.kaddem.entities.Etudiant;
-import tn.esprit.spring.kaddem.entities.Specialite;
 import tn.esprit.spring.kaddem.services.IContratService;
 
 import java.util.Date;
