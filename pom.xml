@@ -10,7 +10,7 @@
     </parent>
     <groupId>tn.esprit.spring</groupId>
     <artifactId>kaddem</artifactId>
-<version>2.0.9</version>
+<version>2.0.10</version>
     <name>kaddem</name>
     <description>kaddem</description>
     <properties>
@@ -159,6 +159,17 @@
               <goal>report</goal>
              </goals>
            </execution>
+		 <execution>
+    <id>post-unit-test</id>
+    <phase>test</phase>
+    <goals>
+        <goal>report</goal>
+    </goals>
+    <configuration>
+        <outputDirectory>${jacoco.path}</outputDirectory>
+    </configuration>
+</execution>
+
          </executions>
          </plugin>
 
