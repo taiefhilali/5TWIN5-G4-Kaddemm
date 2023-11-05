@@ -13,9 +13,7 @@ public class DetailEquipe implements Serializable{
     private String thematique;
     @OneToOne(mappedBy="detailEquipe")
     private Equipe equipe;
-    public DetailEquipe() {
-        // TODO Auto-generated constructor stub
-    }
+    public DetailEquipe() {}
 
     public DetailEquipe(Integer salle, String thematique) {
         super();

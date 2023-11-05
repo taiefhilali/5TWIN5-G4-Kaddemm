@@ -16,9 +16,7 @@ public class Universite implements Serializable{
     @OneToMany(cascade = CascadeType.ALL)
     @JsonIgnore
     private Set<Departement> departements;
-    public Universite() {
-        // TODO Auto-generated constructor stub
-    }
+    public Universite() {}
 
     public Universite(String nomUniv) {
         super();

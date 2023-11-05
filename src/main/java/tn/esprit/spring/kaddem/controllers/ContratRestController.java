@@ -18,19 +18,16 @@ import java.util.List;
 @RequestMapping("/contrat")
 public class ContratRestController {
 	IContratService contratService;
-	// http://localhost:8089/Kaddem/contrat/retrieve-all-contrats
 	@GetMapping("/retrieve-all-contrats")
 	public List<Contrat> getContrats() {
 		return contratService.retrieveAllContrats();
 
 	}
-	// http://localhost:8089/Kaddem/contrat/retrieve-contrat/8
 	@GetMapping("/retrieve-contrat/{contrat-id}")
 	public Contrat retrieveContrat(@PathVariable("contrat-id") Integer contratId) {
 		return contratService.retrieveContrat(contratId);
 	}
 
-	// http://localhost:8089/Kaddem/econtrat/add-contrat
 	@PostMapping("/add-contrat")
 	public Contrat addContrat(@RequestBody ContratDTO contratDTO) {
 		Contrat contrat = new Contrat();
@@ -42,13 +39,11 @@ public class ContratRestController {
 		return contratService.addContrat(contrat);
 	}
 
-	// http://localhost:8089/Kaddem/contrat/remove-contrat/1
 	@DeleteMapping("/remove-contrat/{contrat-id}")
 	public void removeContrat(@PathVariable("contrat-id") Integer contratId) {
 		contratService.removeContrat(contratId);
 	}
 
-	// http://localhost:8089/Kaddem/contrat/update-contrat
 	@PutMapping("/update-contrat")
 	public Contrat updateContrat(@RequestBody ContratDTO contratDTO) {
 		Contrat existingContrat = contratService.retrieveContrat(contratDTO.getIdContrat()); // Assuming getId() exists in ContratDTO
@@ -67,11 +62,9 @@ public class ContratRestController {
 
 	@PutMapping(value = "/assignContratToEtudiant/{idContrat}/{nomE}/{prenomE}")
 	public Contrat assignContratToEtudiant (Integer idContrat, String nomE, String prenomE){
-	//	Contrat c= contratService.affectContratToEtudiant()
 		return 	(contratService.affectContratToEtudiant(idContrat, nomE, prenomE));
 	}
 
-	//The most common ISO Date Format yyyy-MM-dd — for example, "2000-10-31".
 		@GetMapping(value = "/getnbContratsValides/{startDate}/{endDate}")
 		public Integer getnbContratsValides(@PathVariable(name = "startDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date startDate,
 										  @PathVariable(name = "endDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date endDate) {
@@ -79,7 +72,6 @@ public class ContratRestController {
 			return contratService.nbContratsValides(startDate, endDate);
 		}
 
-    //Only no-arg methods may be annotated with @Scheduled
     @Scheduled(cron="0 0 13 * * *")//(cron="0 0 13 * * ?")(fixedRate =21600)
 	@PutMapping(value = "/majStatusContrat")
 	public void majStatusContrat (){

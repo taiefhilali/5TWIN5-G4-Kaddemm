@@ -23,9 +23,7 @@ public class Equipe implements Serializable{
     @OneToOne
     private DetailEquipe detailEquipe;
 
-    public Equipe() {
-        // TODO Auto-generated constructor stub
-    }
+    public Equipe() {}
 
     public Equipe(String nomEquipe) {
         this.nomEquipe = nomEquipe;
