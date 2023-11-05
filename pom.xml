@@ -63,6 +63,7 @@
             <finalName>5TWIN5-G4-Kaddem</finalName>
 
         <plugins>
+
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
