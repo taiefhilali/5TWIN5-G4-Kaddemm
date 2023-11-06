@@ -112,8 +112,6 @@
 <artifactId>maven-surefire-plugin</artifactId>
 <version>2.22.2</version>
 <configuration>
-	       <!-- <argLine>${surefireArgLine}</argLine>--> <!-- Include the argLine here -->
-    <!--<argLine>-Xmx1024m -XX:MaxPermSize=256m</argLine>-->
 	                    <argLine>@{argLine}</argLine>
 
 
@@ -144,25 +142,7 @@
         </execution>
     </executions>
 </plugin>-->
- <!--<plugin>
-        <groupId>org.jacoco</groupId>
-        <artifactId>jacoco-maven-plugin</artifactId>
-        <version>0.8.7</version>
-        <executions>
-          <execution>
-            <goals>
-              <goal>prepare-agent</goal>
-            </goals>
-          </execution>
-          <execution>
-            <id>report</id>
-            <phase>test</phase>
-            <goals>
-              <goal>report</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>-->
+
 		<plugin>
                <groupId>org.sonarsource.scanner.maven</groupId>
                <artifactId>sonar-maven-plugin</artifactId>
@@ -170,36 +150,6 @@
              </plugin>
 
 		
-		<!-- <plugin>
-         <groupId>org.jacoco</groupId>
-         <artifactId>jacoco-maven-plugin</artifactId>
-         <version>0.8.6</version>
-         <executions>
-           <execution>
-             <id>prepare-agent</id>
-             <goals>
-              <goal>prepare-agent</goal>
-             </goals>
-           </execution>
-           <execution>
-             <id>report</id>
-             <goals>
-              <goal>report</goal>
-             </goals>
-           </execution>
-		 <execution>
-    <id>post-unit-test</id>
-    <phase>test</phase>
-    <goals>
-        <goal>report</goal>
-    </goals>
-    <configuration>
-        <outputDirectory>${jacoco.path}</outputDirectory>
-    </configuration>
-</execution>
-
-         </executions>
-         </plugin>-->
   <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
@@ -213,7 +163,7 @@
                     </execution>
                     <execution>
                         <id>jacoco-site</id>
-                        <phase>package</phase>
+                        <phase>test</phase>
                         <goals>
                             <goal>report</goal>
                         </goals>
