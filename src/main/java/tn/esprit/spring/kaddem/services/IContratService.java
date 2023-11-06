@@ -1,6 +1,6 @@
 package tn.esprit.spring.kaddem.services;
 
-import tn.esprit.spring.kaddem.Dto.ContratDTO;
+import tn.esprit.spring.kaddem.dto.ContratDTO;
 import tn.esprit.spring.kaddem.entities.Contrat;
 import java.util.Date;
 import java.util.List;
