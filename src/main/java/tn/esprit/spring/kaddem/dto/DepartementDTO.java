@@ -4,7 +4,7 @@ public class DepartementDTO {
     private Integer idDepart;
     private String nomDepart;
 
-    public DepartementDTO() {
+    public DepartementDTO() {super();
     }
 
     public DepartementDTO(Integer idDepart, String nomDepart) {

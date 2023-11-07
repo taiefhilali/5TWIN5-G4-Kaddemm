@@ -4,7 +4,7 @@ import tn.esprit.spring.kaddem.entities.Specialite;
 
 import java.util.Date;
 
-public class ContratdTO {
+public class ContratDTO {
      Integer idContrat;
      Date dateDebutContrat;
      Date dateFinContrat;
@@ -12,20 +12,12 @@ public class ContratdTO {
      Boolean archive;
      Integer montantContrat;
 
-    public ContratdTO() {
+    public ContratDTO() {super();
     }
 
-    public ContratdTO(Date dateDebutContrat, Date dateFinContrat, Specialite specialite, Boolean archive,
-                   Integer montantContrat) {
-        super();
-        this.dateDebutContrat = dateDebutContrat;
-        this.dateFinContrat = dateFinContrat;
-        this.specialite = specialite;
-        this.archive = archive;
-        this.montantContrat = montantContrat;
-    }
 
-    public ContratdTO(Integer idContrat, Date dateDebutContrat, Date dateFinContrat, Specialite specialite,
+
+    public ContratDTO(Integer idContrat, Date dateDebutContrat, Date dateFinContrat, Specialite specialite,
                    Boolean archive, Integer montantContrat) {
         super();
         this.idContrat = idContrat;

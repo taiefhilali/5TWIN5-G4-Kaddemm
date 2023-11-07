@@ -7,9 +7,7 @@ public class EquipeDTO {
     private String nomEquipe;
     private Niveau niveau;
 
-    // Constructors, getters, and setters
-
-    public EquipeDTO() {
+    public EquipeDTO() {super();
     }
 
     public EquipeDTO(Integer idEquipe, String nomEquipe, Niveau niveau) {
@@ -17,8 +15,6 @@ public class EquipeDTO {
         this.nomEquipe = nomEquipe;
         this.niveau = niveau;
     }
-
-    // Getters and setters
     public Integer getIdEquipe() {
         return idEquipe;
     }

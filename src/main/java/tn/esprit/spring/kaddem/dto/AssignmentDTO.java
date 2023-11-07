@@ -1,14 +1,14 @@
 package tn.esprit.spring.kaddem.dto;
 
-public class AssignmentdTO {
+public class AssignmentDTO {
      Integer idContrat;
      Integer idEquipe;
 
-    public AssignmentdTO() {
+    public AssignmentDTO() {
         super();
     }
 
-    public AssignmentdTO(Integer idContrat, Integer idEquipe) {
+    public AssignmentDTO(Integer idContrat, Integer idEquipe) {
         super();
         this.idContrat = idContrat;
         this.idEquipe = idEquipe;

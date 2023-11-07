@@ -8,9 +8,8 @@ public class EtudiantDTO {
     private String prenomE;
     private Option op;
 
-    // Constructors, getters, and setters
 
-    public EtudiantDTO() {
+    public EtudiantDTO() {super();
     }
 
     public EtudiantDTO(Integer idEtudiant, String nomE, String prenomE, Option op) {
@@ -20,7 +19,6 @@ public class EtudiantDTO {
         this.op = op;
     }
 
-    // Getters and setters
     public Integer getIdEtudiant() {
         return idEtudiant;
     }
