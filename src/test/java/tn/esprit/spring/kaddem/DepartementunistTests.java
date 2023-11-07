@@ -64,15 +64,15 @@ import static org.junit.jupiter.api.Assertions.*;
     @Test
     void testRemoveDepartement() {
         Departement departement = new Departement();
-
         departement.setNomDepart("departement2");
-
         departementRepository.save(departement);
+
+        departementService.retrieveDepartement(departement.getIdDepart());
 
         departementService.deleteDepartement(departement.getIdDepart());
 
         Departement removedDepartement = departementRepository.findById(departement.getIdDepart()).orElse(null);
 
         assertNull(removedDepartement);
-
-}}
+    }
+}
