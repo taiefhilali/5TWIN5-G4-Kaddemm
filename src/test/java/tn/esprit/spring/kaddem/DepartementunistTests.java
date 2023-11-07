@@ -69,7 +69,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
         departementRepository.save(departement);
 
-        departementService.retrieveDepartement(departement.getIdDepart());
+        departementService.deleteDepartement(departement.getIdDepart());
 
         Departement removedDepartement = departementRepository.findById(departement.getIdDepart()).orElse(null);
 

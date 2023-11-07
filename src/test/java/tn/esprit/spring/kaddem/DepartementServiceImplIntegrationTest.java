@@ -90,7 +90,7 @@ class DepartementServiceImplIntegrationTest {
 
         when(departementRepository.findById(1)).thenReturn(Optional.of(departement));
 
-        departementService.retrieveDepartement(1);
+        departementService.deleteDepartement(1);
 
         assertNull(departementService.retrieveDepartement(1));
     }
