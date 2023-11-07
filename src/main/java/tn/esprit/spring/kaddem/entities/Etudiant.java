@@ -32,6 +32,7 @@ public class Etudiant implements Serializable{
     @JsonIgnore
     private List<Equipe> equipes ;
     public Etudiant() {
+        super();
     }
 
     public Etudiant(String nomE, String prenomE) {

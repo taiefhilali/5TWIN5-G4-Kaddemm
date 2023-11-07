@@ -24,6 +24,7 @@ public class Equipe implements Serializable{
     private DetailEquipe detailEquipe;
 
     public Equipe() {
+        super();
     }
 
     public Equipe(String nomEquipe) {
