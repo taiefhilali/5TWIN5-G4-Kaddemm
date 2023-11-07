@@ -1,8 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: tn.esprit.spring.kaddem.DepartementServiceImpIntegrationTest
 -------------------------------------------------------------------------------
-Tests run: 5, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 21.619 s <<< FAILURE! - in tn.esprit.spring.kaddem.DepartementServiceImpIntegrationTest
-testRemoveDepartement  Time elapsed: 0.013 s  <<< FAILURE!
-org.opentest4j.AssertionFailedError: Expected tn.esprit.spring.kaddem.services.DepartementNotFoundException to be thrown, but nothing was thrown.
-	at tn.esprit.spring.kaddem.DepartementServiceImpIntegrationTest.testRemoveDepartement(DepartementServiceImpIntegrationTest.java:93)
-
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 18.74 s - in tn.esprit.spring.kaddem.DepartementServiceImpIntegrationTest

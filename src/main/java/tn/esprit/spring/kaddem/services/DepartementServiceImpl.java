@@ -47,16 +47,11 @@ public class DepartementServiceImpl implements IDepartementService{
 	}
 
 
-	public void deleteDepartement(Integer idDepartement) {
-		Optional<Departement> optionalDepartement = departementRepository.findById(idDepartement);
-
-		if (optionalDepartement.isPresent()) {
-			departementRepository.delete(optionalDepartement.get());
-		} else {
-			// Log a message or handle the case where Departement is not found
-			System.out.println("Departement not found for id: " + idDepartement);
-		}
+	public  void deleteDepartement(Integer idDepartement){
+		Departement d = retrieveDepartement(idDepartement);
+		departementRepository.delete(d);
 	}
+
 
 
 

@@ -90,10 +90,10 @@ import static org.mockito.Mockito.when;
 
         when(departementRepository.findById(2)).thenReturn(Optional.of(departement));
 
-        assertThrows(DepartementNotFoundException.class, () -> {
-            departementService.deleteDepartement(2);
-        });
+        // No exception is expected, and the method should run without throwing DepartementNotFoundException
+        assertDoesNotThrow(() -> departementService.deleteDepartement(2));
     }
+
 
 
 }
