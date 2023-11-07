@@ -10,7 +10,7 @@
     </parent>
     <groupId>tn.esprit.spring</groupId>
     <artifactId>kaddem</artifactId>
-<version>3.0.7</version>
+<version>3.0.8</version>
     <name>kaddem</name>
     <description>kaddem</description>
     <properties>
@@ -30,7 +30,6 @@
         <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
         <sonar.sources>src/main</sonar.sources>
         <sonar.tests>src/test/java/tn/esprit/spring/kaddem</sonar.tests>
-	        <sonar.jacoco.reportPath>${project.basedir}/target/jacoco.exec</sonar.jacoco.reportPath>
         <sonar.java.binaries>target/classes</sonar.java.binaries>
         <sonar.coverage.jacoco.xmlReportPaths>target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
     </properties>
