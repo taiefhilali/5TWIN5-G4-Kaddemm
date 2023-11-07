@@ -4,9 +4,12 @@ import java.util.Arrays; // Import Arrays
 
 import org.junit.jupiter.api.Test;
 import java.util.List; // Make sure to import the correct List class
+
+import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.boot.test.context.SpringBootTest;
 import tn.esprit.spring.kaddem.entities.Contrat;
 import tn.esprit.spring.kaddem.entities.Specialite;
@@ -21,6 +24,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
+@RunWith(MockitoJUnitRunner.class)
+
 class ContratServiceImplIntegrationTest {
 
     @Mock
