@@ -15,6 +15,8 @@
     <description>kaddem</description>
     <properties>
         <java.version>1.8</java.version>
+        <jacoco-agent.argLine>-javaagent:${settings.localRepository}/org/jacoco/org.jacoco.agent/${jacoco.version}/org.jacoco.agent-${jacoco.version}-runtime.jar=destfile=${project.build.directory}/jacoco.exec,includes=**/*</jacoco-agent.argLine>
+
     </properties>
     <dependencies>
         <dependency>
@@ -70,16 +72,20 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.7</version> <!-- Use the latest version -->
+                <version>0.8.7</version> <!-- Use the appropriate version -->
+
                 <executions>
                     <execution>
+                        <id>default-prepare-agent</id>
                         <goals>
                             <goal>prepare-agent</goal>
                         </goals>
+                        <configuration>
+                            <propertyName>jacoco-agent.argLine</propertyName>
+                        </configuration>
                     </execution>
                     <execution>
-                        <id>report</id>
-                        <phase>prepare-package</phase>
+                        <id>default-report</id>
                         <goals>
                             <goal>report</goal>
                         </goals>
@@ -116,6 +122,5 @@
             </plugin>
         </plugins>
     </reporting>
-
 
 </project>
