@@ -1,59 +1,69 @@
 package tn.esprit.spring.kaddem;
 
-import org.junit.jupiter.api.Test;
-import java.util.List; // Make sure to import the correct List class
 
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import tn.esprit.spring.kaddem.entities.Contrat;
 import tn.esprit.spring.kaddem.entities.Departement;
+import tn.esprit.spring.kaddem.entities.Specialite;
 import tn.esprit.spring.kaddem.repositories.DepartementRepository;
 import tn.esprit.spring.kaddem.services.DepartementServiceImpl;
 
 import javax.transaction.Transactional;
+import java.util.Date;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
 @Transactional
- class DepartementunistTests {
+public class DepartemmenistTests {
     @Autowired
     private DepartementRepository departementRepository;
 
     @Autowired
     private DepartementServiceImpl departementService;
+
+
     @Test
-    void testAddDepartement() {
+    void testadddepartement() {
         Departement departementToAdd = new Departement();
-        departementToAdd.setNomDepart("departement1");
+        departementToAdd.setNomDepart("departementinformatique");
+
 
         Departement addeddepartement = departementService.addDepartement(departementToAdd);
 
         assertNotNull(addeddepartement.getIdDepart());
-
         assertEquals(departementToAdd.getNomDepart(), addeddepartement.getNomDepart());
+
+
+
     }
     @Test
     void testUpdateDepartement() {
         Departement departementToUpdate = new Departement();
+        departementToUpdate.setNomDepart("departementinformatique");
 
-        departementToUpdate.setNomDepart("departement2");
-        Departement saveddepartement = departementRepository.save(departementToUpdate);
+        Departement savedDepartement = departementRepository.save(departementToUpdate);
 
-        Departement updateddepartement = departementService.updateDepartement(saveddepartement);
+        Departement updatedDepartement = departementService.updateDepartement(savedDepartement);
 
-        assertNotNull(updateddepartement);
+        assertNotNull(updatedDepartement);
     }
     @Test
-    void testRetrieveAllDepartements() {
+    void testRetrieveallDepartement() {
         List<Departement> result = departementService.retrieveAllDepartements();
 
         assertNotNull(result);
     }
 
     @Test
-    void testRetrieveDepartement() {
+    void testRetrieveDepartment() {
         Departement departement = new Departement();
-        departement.setNomDepart("departement2");
+        departement.setNomDepart("departementinformatique");
+
         departementRepository.save(departement);
 
         Departement result = departementService.retrieveDepartement(departement.getIdDepart());
@@ -64,15 +74,15 @@ import static org.junit.jupiter.api.Assertions.*;
     @Test
     void testRemoveDepartement() {
         Departement departement = new Departement();
-        departement.setNomDepart("departement2");
-        departementRepository.save(departement);
+        departement.setNomDepart("departementinformatique");
 
-        departementService.retrieveDepartement(departement.getIdDepart());
+
+        departementRepository.save(departement);
 
         departementService.deleteDepartement(departement.getIdDepart());
 
         Departement removedDepartement = departementRepository.findById(departement.getIdDepart()).orElse(null);
 
         assertNull(removedDepartement);
-    }
-}
+
+    }}
