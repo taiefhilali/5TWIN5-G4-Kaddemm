@@ -105,3 +105,7 @@ o
 ?src/test/java/tn/esprit/spring/kaddem/TestsEtudiantService.java,1\a\1ad493d87a60a4dc5c42482995468945493e6c15
 €
 Psrc/test/java/tn/esprit/spring/kaddem/DepartementServiceImplIntegrationTest.java,e\c\ec05604f6b18f9385f1055c25c0af9bc041da3e0
+
+Osrc/test/java/tn/esprit/spring/kaddem/DepartementServiceImpIntegrationTest.java,7\2\728f7649d0ed27f965d7a3a63f4d14f47faf7d89
+n
+>src/test/java/tn/esprit/spring/kaddem/DepartemmenistTests.java,e\7\e70cedccc55d9118df235307f13deb0ec65b2ee5

@@ -6,9 +6,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
-import tn.esprit.spring.kaddem.entities.Contrat;
 import tn.esprit.spring.kaddem.entities.Departement;
-import tn.esprit.spring.kaddem.entities.Specialite;
 import tn.esprit.spring.kaddem.repositories.DepartementRepository;
 import tn.esprit.spring.kaddem.services.DepartementServiceImpl;
 
@@ -59,7 +57,6 @@ import static org.mockito.Mockito.when;
     }
 
 
-
     @Test
     void testRetrieveallDepartement() {
         when(departementRepository.findAll()).thenReturn(Arrays.asList(new Departement(), new Departement())); // Mock data
@@ -70,6 +67,7 @@ import static org.mockito.Mockito.when;
         assertEquals(2, result.size());
 
     }
+
     @Test
     void testRetrieveDepartment() {
         Departement departement = new Departement();
@@ -90,10 +88,8 @@ import static org.mockito.Mockito.when;
         when(departementRepository.findById(2)).thenReturn(Optional.of(departement));
 
         assertThrows(NoSuchElementException.class, () -> {
-            departementService.deleteDepartement(1);
-            departementService.retrieveDepartement(1);
+            departementService.deleteDepartement(2); // Use the correct ID for deletion
         });
-
     }
 
 }
