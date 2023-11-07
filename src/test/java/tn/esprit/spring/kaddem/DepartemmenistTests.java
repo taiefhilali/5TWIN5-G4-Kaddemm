@@ -4,11 +4,14 @@ package tn.esprit.spring.kaddem;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import tn.esprit.spring.kaddem.entities.Contrat;
 import tn.esprit.spring.kaddem.entities.Departement;
+import tn.esprit.spring.kaddem.entities.Specialite;
 import tn.esprit.spring.kaddem.repositories.DepartementRepository;
 import tn.esprit.spring.kaddem.services.DepartementServiceImpl;
 
 import javax.transaction.Transactional;
+import java.util.Date;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
