@@ -1,4 +1,4 @@
-package tn.esprit.spring.kaddem.Dto;
+package tn.esprit.spring.kaddem.dto;
 
 import tn.esprit.spring.kaddem.entities.Specialite;
 
@@ -12,7 +12,7 @@ public class ContratDTO {
      Boolean archive;
      Integer montantContrat;
 
-    public ContratDTO() {
+    public ContratDTO() {  super();
     }
 
     public ContratDTO(Date dateDebutContrat, Date dateFinContrat, Specialite specialite, Boolean archive,

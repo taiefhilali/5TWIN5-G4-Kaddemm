@@ -1,4 +1,4 @@
-package tn.esprit.spring.kaddem.Dto;
+package tn.esprit.spring.kaddem.dto;
 
 import tn.esprit.spring.kaddem.entities.Option;
 
@@ -11,6 +11,8 @@ public class EtudiantDTO {
     // Constructors, getters, and setters
 
     public EtudiantDTO() {
+        super();
+
     }
 
     public EtudiantDTO(Integer idEtudiant, String nomE, String prenomE, Option op) {

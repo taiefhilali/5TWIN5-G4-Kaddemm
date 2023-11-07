@@ -2,7 +2,7 @@ package tn.esprit.spring.kaddem.controllers;
 
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import tn.esprit.spring.kaddem.Dto.DepartementDTO;
+import tn.esprit.spring.kaddem.dto.DepartementDTO;
 import tn.esprit.spring.kaddem.entities.Departement;
 import tn.esprit.spring.kaddem.services.IDepartementService;
 
@@ -16,8 +16,7 @@ public class DepartementRestController {
 	// http://localhost:8089/Kaddem/departement/retrieve-all-departements
 	@GetMapping("/retrieve-all-departements")
 	public List<Departement> getDepartements() {
-		List<Departement> listDepartements = departementService.retrieveAllDepartements();
-		return listDepartements;
+		return departementService.retrieveAllDepartements();
 	}
 	// http://localhost:8089/Kaddem/departement/retrieve-departement/8
 	@GetMapping("/retrieve-departement/{departement-id}")
@@ -25,12 +24,7 @@ public class DepartementRestController {
 		return departementService.retrieveDepartement(departementId);
 	}
 
-	// http://localhost:8089/Kaddem/departement/add-departement
-	/*@PostMapping("/add-departement")
-	public Departement addDepartement(@RequestBody Departement d) {
-		Departement departement = departementService.addDepartement(d);
-		return departement;
-	}*/
+
 	@GetMapping("/{id}")
 	public DepartementDTO getDepartement(@PathVariable("id") Integer id) {
 		Departement departement = departementService.getDepartementById(id);
@@ -52,10 +46,21 @@ public class DepartementRestController {
 
 	// http://localhost:8089/Kaddem/departement/update-departement
 	@PutMapping("/update-departement")
-	public Departement updateDepartement(@RequestBody Departement e) {
-		Departement departement= departementService.updateDepartement(e);
-		return departement;
+	public DepartementDTO updateDepartement(@RequestBody DepartementDTO departementDTO) {
+		// Convert DTO to entity if necessary
+		Departement departement = new Departement();
+		departement.setNomDepart(departementDTO.getNomDepart());
+		departement.setIdDepart(departementDTO.getIdDepart());
+
+		// Call the service method to update the departement
+		departement = departementService.updateDepartement(departement);
+
+		// Convert the updated entity back to DTO
+		DepartementDTO updatedDTO = new DepartementDTO();
+		updatedDTO.setNomDepart(departement.getNomDepart());
+		updatedDTO.setIdDepart(departement.getIdDepart());
+
+		return updatedDTO;
 	}
+
 }
-
-

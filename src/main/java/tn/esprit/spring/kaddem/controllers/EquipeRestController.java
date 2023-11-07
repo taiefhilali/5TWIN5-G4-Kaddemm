@@ -1,10 +1,9 @@
 package tn.esprit.spring.kaddem.controllers;
 
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
-import tn.esprit.spring.kaddem.Dto.EquipeDTO;
+import tn.esprit.spring.kaddem.dto.EquipeDTO;
 import tn.esprit.spring.kaddem.entities.Equipe;
 import tn.esprit.spring.kaddem.services.IEquipeService;
 
@@ -18,8 +17,7 @@ public class EquipeRestController {
 	// http://localhost:8089/Kaddem/equipe/retrieve-all-equipes
 	@GetMapping("/retrieve-all-equipes")
 	public List<Equipe> getEquipes() {
-		List<Equipe> listEquipes = equipeService.retrieveAllEquipes();
-		return listEquipes;
+		return equipeService.retrieveAllEquipes();
 	}
 	// http://localhost:8089/Kaddem/equipe/retrieve-equipe/8
 	@GetMapping("/retrieve-equipe/{equipe-id}")
@@ -71,8 +69,6 @@ public class EquipeRestController {
 	@Scheduled(cron="0 0 13 * * *")
 	@PutMapping("/faireEvoluerEquipes")
 	public void faireEvoluerEquipes() {
-		 equipeService.evoluerEquipes() ;
+		equipeService.evoluerEquipes() ;
 	}
 }
-
-

@@ -25,6 +25,8 @@ public class Contrat implements Serializable{
     private Etudiant etudiant;
 
     public Contrat() {
+        super();
+
     }
 
     public Contrat(Date dateDebutContrat, Date dateFinContrat, Specialite specialite, Boolean archive,

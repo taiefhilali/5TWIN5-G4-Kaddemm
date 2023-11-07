@@ -1,4 +1,4 @@
-package tn.esprit.spring.kaddem.Dto;
+package tn.esprit.spring.kaddem.dto;
 
 import tn.esprit.spring.kaddem.entities.Niveau;
 
@@ -7,9 +7,9 @@ public class EquipeDTO {
     private String nomEquipe;
     private Niveau niveau;
 
-    // Constructors, getters, and setters
 
     public EquipeDTO() {
+        super();
     }
 
     public EquipeDTO(Integer idEquipe, String nomEquipe, Niveau niveau) {
