@@ -10,6 +10,7 @@ import tn.esprit.spring.kaddem.entities.Contrat;
 import tn.esprit.spring.kaddem.entities.Departement;
 import tn.esprit.spring.kaddem.entities.Specialite;
 import tn.esprit.spring.kaddem.repositories.DepartementRepository;
+import tn.esprit.spring.kaddem.services.DepartementNotFoundException;
 import tn.esprit.spring.kaddem.services.DepartementServiceImpl;
 
 import java.util.*;
@@ -89,11 +90,10 @@ import static org.mockito.Mockito.when;
 
         when(departementRepository.findById(2)).thenReturn(Optional.of(departement));
 
-        assertThrows(NoSuchElementException.class, () -> {
-            departementService.deleteDepartement(1);
-            departementService.retrieveDepartement(1);
+        assertThrows(DepartementNotFoundException.class, () -> {
+            departementService.deleteDepartement(2);
         });
-
     }
+
 
 }
