@@ -1,32 +1,18 @@
 package tn.esprit.spring.kaddem.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class UniversiteDTO {
     private Integer idUniv;
 
     private String nomUniv;
 
-    public UniversiteDTO() {
-        super();
-    }
 
-    public UniversiteDTO(String nomUniv) {
-        super();
-        this.nomUniv = nomUniv;
-    }
-
-    public Integer getIdUniv() {
-        return idUniv;
-    }
-
-    public void setIdUniv(Integer idUniv) {
-        this.idUniv = idUniv;
-    }
-
-    public String getNomUniv() {
-        return nomUniv;
-    }
-
-    public void setNomUniv(String nomUniv) {
-        this.nomUniv = nomUniv;
-    }
 }

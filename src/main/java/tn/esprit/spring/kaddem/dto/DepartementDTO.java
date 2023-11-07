@@ -1,32 +1,17 @@
 package tn.esprit.spring.kaddem.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class DepartementDTO {
     private Integer idDepart;
     private String nomDepart;
-
-    public DepartementDTO() {
-    }
-
-    public DepartementDTO(Integer idDepart, String nomDepart) {
-        this.idDepart = idDepart;
-        this.nomDepart = nomDepart;
-    }
-
-    public Integer getIdDepart() {
-        return idDepart;
-    }
-
-    public void setIdDepart(Integer idDepart) {
-        this.idDepart = idDepart;
-    }
-
-    public String getNomDepart() {
-        return nomDepart;
-    }
-
-    public void setNomDepart(String nomDepart) {
-        this.nomDepart = nomDepart;
-    }
 
 
 }
