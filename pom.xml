@@ -56,9 +56,10 @@
         <repository>
             <id>deploymentRepo</id>
             <name>Nexus Repository</name>
-            <url>http://172.10.0.140:8081/repository/maven-snapshots/</url>
+            <url>http://172.10.0.140:8081/repository/maven-releases/</url>
         </repository>
     </distributionManagement>
+
     <build>
             <finalName>5TWIN5-G4-Kaddem</finalName>
 
