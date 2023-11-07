@@ -36,43 +36,23 @@ class ContratServiceImplIntegrationTest {
 
     @Test
     void testAddContrat() {
+        Contrat contratToAdd = new Contrat();
+        contratToAdd.setDateDebutContrat(new Date());
+        contratToAdd.setDateFinContrat(new Date());
+        contratToAdd.setSpecialite(Specialite.IA);
+        contratToAdd.setArchive(false);
+        contratToAdd.setMontantContrat(1000);
 
-    ContratDTO contratDTOToAdd = new ContratDTO();
-    contratDTOToAdd.setDateDebutContrat(new Date());
-    contratDTOToAdd.setDateFinContrat(new Date());
-    contratDTOToAdd.setSpecialite(Specialite.IA);
-    contratDTOToAdd.setArchive(false);
-    contratDTOToAdd.setMontantContrat(1000);
-    // Mock the conversion from ContratDTO to Contrat
-    Contrat contratToAdd = convertToContrat(contratDTOToAdd);
-    // Mock the service method to return the Contrat object
-    when(contratService.addContrat(Mockito.any(Contrat.class))).thenReturn(contratToAdd);
-    // Call the controller method
-    ContratDTO addedContratDTO = contratController.addContrat(contratDTOToAdd);
+        when(contratRepository.save(Mockito.any(Contrat.class))).thenReturn(contratToAdd);
 
-    // Verify that the ContratDTO returned by the controller matches the input ContratDTO
-    assertEquals(contratDTOToAdd.getDateDebutContrat(), addedContratDTO.getDateDebutContrat());
-    assertEquals(contratDTOToAdd.getDateFinContrat(), addedContratDTO.getDateFinContrat());
-    assertEquals(contratDTOToAdd.getSpecialite(), addedContratDTO.getSpecialite());
-    assertEquals(contratDTOToAdd.isArchive(), addedContratDTO.isArchive());
-    assertEquals(contratDTOToAdd.getMontantContrat(), addedContratDTO.getMontantContrat());
-        // Contrat contratToAdd = new Contrat();
-        // contratToAdd.setDateDebutContrat(new Date());
-        // contratToAdd.setDateFinContrat(new Date());
-        // contratToAdd.setSpecialite(Specialite.IA);
-        // contratToAdd.setArchive(false);
-        // contratToAdd.setMontantContrat(1000);
+        Contrat addedContrat = contratService.addContrat(contratToAdd);
 
-        // when(contratRepository.save(Mockito.any(Contrat.class))).thenReturn(contratToAdd);
-
-        // Contrat addedContrat = contratService.addContrat(contratToAdd);
-
-        // assertNull(addedContrat.getIdContrat());
-        // assertEquals(contratToAdd.getDateDebutContrat(), addedContrat.getDateDebutContrat());
-        // assertEquals(contratToAdd.getDateFinContrat(), addedContrat.getDateFinContrat());
-        // assertEquals(contratToAdd.getSpecialite(), addedContrat.getSpecialite());
-        // assertEquals(contratToAdd.isArchive(), addedContrat.isArchive());
-        // assertEquals(contratToAdd.getMontantContrat(), addedContrat.getMontantContrat());
+        assertNull(addedContrat.getIdContrat());
+        assertEquals(contratToAdd.getDateDebutContrat(), addedContrat.getDateDebutContrat());
+        assertEquals(contratToAdd.getDateFinContrat(), addedContrat.getDateFinContrat());
+        assertEquals(contratToAdd.getSpecialite(), addedContrat.getSpecialite());
+        assertEquals(contratToAdd.isArchive(), addedContrat.isArchive());
+        assertEquals(contratToAdd.getMontantContrat(), addedContrat.getMontantContrat());
     }
 
     @Test
