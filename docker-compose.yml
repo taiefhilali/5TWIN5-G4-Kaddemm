@@ -1,29 +1,24 @@
-version: "3"
+version: "3.9"
+
 services:
-  mysqldb:
-    image: mysql:latest
-    container_name: mysqldb
+  5TWIN5-G4-KADDEMM:
+    container_name: KADDEMM
+    ports:
+      - "8089:8089"
     environment:
-<<<<<<< Updated upstream
-=======
-      - SPRING_DATASOURCE_URL=jdbc:mysql://db-mysql:3306/kaddem\db?createDatabaseIfNotExist=true&useSSL=false&max_allowed_packet=15728640&allowPublicKeyRetriev>
+      - SPRING_DATASOURCE_URL=jdbc:jdbc:mysql://db-mysql:3306/kaddem?createDatabaseIfNotExist=true&useSSL=false&max_allowed_packet=15728640&allowPublicKeyRetrieval=true
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=root
-    image: "taiefhilali/taiefhilali-5twin5-g4-kaddemfinal"
+    image: "siwarenf/siwarenfaiedh-5twin5-g4-kaddem"
     restart: unless-stopped
     depends_on:
       - db-mysql
->>>>>>> Stashed changes
 
-      MYSQL_DATABASE: kaddemdb
-    restart: unless-stopped
-    volumes:
-      - /home/mysql/data:/var/lib/mysql -d mysql
-
-  kaddemproject:
-    image: taiefhilali/taiefhilali-5twin5-g4-kaddem
+  db-mysql:
+    image: "mysql:latest"
+    container_name: db-mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
     ports:
-      - 8089:8089
-    restart: on-failure
-    depends_on:
-      - mysqldb
+      - "3306:3306"
+    restart: unless-stopped
