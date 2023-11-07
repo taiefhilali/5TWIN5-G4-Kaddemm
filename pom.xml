@@ -15,7 +15,6 @@
     <description>kaddem</description>
     <properties>
         <java.version>1.8</java.version>
-        <jacoco-agent.argLine>-javaagent:${settings.localRepository}/org/jacoco/org.jacoco.agent/${jacoco.version}/org.jacoco.agent-${jacoco.version}-runtime.jar=destfile=${project.build.directory}/jacoco.exec,includes=**/*</jacoco-agent.argLine>
 
     </properties>
     <dependencies>
