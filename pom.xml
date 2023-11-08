@@ -51,11 +51,10 @@
 </dependency>
 </dependencies>
 <distributionManagement>
-<repository>
-<id>deploymentRepo</id>
-<name>Nexus Repository</name>
-<url>http://172.10.0.140:8081/repository/maven-snapshots/</url>
-</repository>
+    <repository>
+        <id>nexus</id>
+        <url>http://172.10.0.140:8081/repository/maven-snapshots/</url>
+    </repository>
 </distributionManagement>
 <build>
 <finalName>5TWIN5-G4-Kaddem</finalName>
