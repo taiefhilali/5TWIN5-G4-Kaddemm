@@ -53,12 +53,12 @@ class ContratServiceImplIntegrationTest {
     @Test
     void testUpdateContrat() {
         Contrat contratToUpdate = new Contrat();
-        contratToUpdate.setIdContrat(1); // Set a valid ID
+        contratToUpdate.setIdContrat(2); // Set a valid ID
         contratToUpdate.setDateDebutContrat(new Date());
         contratToUpdate.setDateFinContrat(new Date());
         contratToUpdate.setSpecialite(Specialite.CLOUD);
         contratToUpdate.setArchive(true);
-        contratToUpdate.setMontantContrat(1500);
+        contratToUpdate.setMontantContrat(2000);
 
         when(contratRepository.findById(1)).thenReturn(Optional.of(contratToUpdate));
         when(contratRepository.save(Mockito.any(Contrat.class))).thenReturn(contratToUpdate);

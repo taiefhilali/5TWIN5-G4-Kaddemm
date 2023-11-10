@@ -1,8 +1,10 @@
 package tn.esprit.spring.kaddem.services;
 
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import tn.esprit.spring.kaddem.entities.Departement;
 import tn.esprit.spring.kaddem.entities.Universite;
 import tn.esprit.spring.kaddem.repositories.DepartementRepository;
@@ -14,6 +16,8 @@ import java.util.Optional;
 import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+@Slf4j
+
 @Service
 public class UniversiteServiceImpl implements IUniversiteService{
 @Autowired
@@ -21,7 +25,7 @@ public class UniversiteServiceImpl implements IUniversiteService{
 @Autowired
     DepartementRepository departementRepository;
 
-    private static final Logger logger = LoggerFactory.getLogger(UniversiteServiceImpl.class);
+    public static final Logger logger = LoggerFactory.getLogger(UniversiteServiceImpl.class);
 
 
     public UniversiteServiceImpl() {
@@ -35,23 +39,15 @@ return (List<Universite>) universiteRepository.findAll();
 return  (universiteRepository.save(u));
     }
 
- public    Universite updateUniversite (Universite  u){
+    public    Universite updateUniversite (Universite  u){
      return  (universiteRepository.save(u));
     }
 
 
 
   public Universite retrieveUniversite(Integer idUniversite) {
-      Optional<Universite> optionalUniversite = universiteRepository.findById(idUniversite);
+      return universiteRepository.findById(idUniversite).orElse(null);
 
-      if (optionalUniversite.isPresent()) {
-          return optionalUniversite.get();
-      } else {
-          // Handle the case where the Universite is not found based on the id
-          // You can throw an exception, return a default value, or handle it based on your application logic
-          // For now, we'll return null
-          return null;
-      }
   }
 
     public  void deleteUniversite(Integer idUniversite){
