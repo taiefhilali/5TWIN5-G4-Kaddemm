@@ -42,12 +42,14 @@ public class ContratServiceImpl implements IContratService{
 		contrat.setArchive(contratDTO.getArchive());
 		contrat.setMontantContrat(contratDTO.getMontantContrat());
 
-	
+
 		return contrat;
 	}
 
 
-	
+	public Contrat updateContrat (Contrat  ce){
+		return contratRepository.save(ce);
+	}
 
 	public  Contrat addContrat (Contrat ce){
 		return contratRepository.save(ce);
@@ -71,7 +73,7 @@ public class ContratServiceImpl implements IContratService{
 		Integer nbContratssActifs=0;
 		if (!contrats.isEmpty()) {
 			for (Contrat contrat : contrats) {
-				if (((!contrat.isArchive()) &&contrat.isArchive()))  {
+				if (((!contrat.getArchive()) &&contrat.getArchive()))  {
 					nbContratssActifs++;
 				}
 			}
@@ -91,7 +93,7 @@ public class ContratServiceImpl implements IContratService{
 		List<Contrat>contratsAarchiver=null;
 		for (Contrat contrat : contrats) {
 			Date dateSysteme = new Date();
-			if (!contrat.isArchive()) {
+			if (!contrat.getArchive()) {
 				long differenceInTime = dateSysteme.getTime() - contrat.getDateFinContrat().getTime();
 				long differenceInDays = (differenceInTime / (1000 * 60 * 60 * 24)) % 365;
 				if (differenceInDays==15){
