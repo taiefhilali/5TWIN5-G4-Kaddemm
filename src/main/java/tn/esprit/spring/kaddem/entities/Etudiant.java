@@ -36,13 +36,14 @@ public class Etudiant implements Serializable{
     @JsonIgnore
     private List<Equipe> equipes ;
 
-     public Etudiant(String nomE, String prenomE, Option op, Set<Contrat> contrats, Departement departement, List<Equipe> equipes) {
+   public Etudiant(String nomE, String prenomE) {
         this.nomE = nomE;
         this.prenomE = prenomE;
-        this.op = op;
-        this.contrats = contrats;
-        this.departement = departement;
-        this.equipes = equipes;
+        // Initialize other fields with default values or null
+        this.op = null; // Assuming 'Option op' is an enum and can be null
+        this.contrats = new HashSet<>(); // Assuming you want an empty set
+        this.departement = null; // Can be null if not yet assigned
+        this.equipes = new ArrayList<>(); // Assuming you want an empty list
     }
 
 }
