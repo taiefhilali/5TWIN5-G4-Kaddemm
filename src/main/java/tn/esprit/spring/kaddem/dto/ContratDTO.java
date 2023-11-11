@@ -15,19 +15,14 @@ public class ContratDTO {
     public ContratDTO() {
     }
 
-    public ContratDTO1(Date dateDebutContrat, Date dateFinContrat, Specialite specialite, Boolean archive,
+    public ContratDTO(Date dateDebutContrat, Date dateFinContrat, Specialite specialite, Boolean archive,
                    Integer montantContrat) {
-        super();
-        this.dateDebutContrat = dateDebutContrat;
-        this.dateFinContrat = dateFinContrat;
-        this.specialite = specialite;
-        this.archive = archive;
-        this.montantContrat = montantContrat;
+        this(null, dateDebutContrat, dateFinContrat, specialite, archive, montantContrat);
     }
 
-    public ContratDTO2(Integer idContrat, Date dateDebutContrat, Date dateFinContrat, Specialite specialite,
+    // Full constructor
+    public ContratDTO(Integer idContrat, Date dateDebutContrat, Date dateFinContrat, Specialite specialite,
                    Boolean archive, Integer montantContrat) {
-        super();
         this.idContrat = idContrat;
         this.dateDebutContrat = dateDebutContrat;
         this.dateFinContrat = dateFinContrat;
