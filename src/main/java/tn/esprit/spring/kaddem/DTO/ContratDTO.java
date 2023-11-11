@@ -1,4 +1,4 @@
-package tn.esprit.spring.kaddem.dto;
+package tn.esprit.spring.kaddem.DTO;
 
 import tn.esprit.spring.kaddem.entities.Specialite;
 
