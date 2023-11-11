@@ -1,9 +1,9 @@
 package tn.esprit.spring.kaddem;
 
-import java.util.Arrays; // Import Arrays
+import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
-import java.util.List; // Make sure to import the correct List class
+import java.util.List;
 
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -17,7 +17,6 @@ import tn.esprit.spring.kaddem.repositories.ContratRepository;
 import tn.esprit.spring.kaddem.services.ContratServiceImpl;
 
 import java.util.Date;
-import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
