@@ -80,7 +80,7 @@ public void evoluerEquipes() {
 			Set<Contrat> contrats = etudiant.getContrats();
 
 			for (Contrat contrat : contrats) {
-				if (!contrat.isArchive() && isContractActiveForYears(contrat, 1)) {
+				if (!contrat.getArchive() && isContractActiveForYears(contrat, 1)) {
 					nbEtudiantsAvecContratsActifs++;
 					break;
 				}
