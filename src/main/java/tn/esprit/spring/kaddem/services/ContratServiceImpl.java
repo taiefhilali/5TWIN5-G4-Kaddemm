@@ -18,9 +18,9 @@ import java.util.Set;
 @Slf4j
 @Service
 public class ContratServiceImpl implements IContratService{
-@Autowired
-ContratRepository contratRepository;
-@Autowired
+	@Autowired
+	ContratRepository contratRepository;
+	@Autowired
 	EtudiantRepository etudiantRepository;
 	public List<Contrat> retrieveAllContrats(){
 		return  contratRepository.findAll();
@@ -63,8 +63,8 @@ ContratRepository contratRepository;
 			}
 		}
 		if (nbContratssActifs<=4){
-		ce.setEtudiant(e);
-		contratRepository.save(ce);}
+			ce.setEtudiant(e);
+			contratRepository.save(ce);}
 		return ce;
 	}
 	public 	Integer nbContratsValides(Date startDate, Date endDate){
@@ -96,7 +96,7 @@ ContratRepository contratRepository;
 		float differenceInTime = endDate.getTime() - (float)startDate.getTime();
 		float differenceInDays = (differenceInTime / (1000 * 60 * 60 * 24)) % 365;
 		float differenceInmonths =differenceInDays/30;
-        List<Contrat> contrats=contratRepository.findAll();
+		List<Contrat> contrats=contratRepository.findAll();
 		float chiffreAffaireEntreDeuxDates=0;
 		for (Contrat contrat : contrats) {
 			if (contrat.getSpecialite()== Specialite.IA){
@@ -108,8 +108,8 @@ ContratRepository contratRepository;
 				chiffreAffaireEntreDeuxDates+=(differenceInmonths*350);
 			}
 			else
-			 {
-				 chiffreAffaireEntreDeuxDates+=(differenceInmonths*450);
+			{
+				chiffreAffaireEntreDeuxDates+=(differenceInmonths*450);
 			}
 		}
 		return chiffreAffaireEntreDeuxDates;
