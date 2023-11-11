@@ -25,6 +25,7 @@ public class Contrat implements Serializable{
     private Etudiant etudiant;
 
     public Contrat() {
+        super();
     }
 
     public Contrat(Date dateDebutContrat, Date dateFinContrat, Specialite specialite, Boolean archive,
@@ -72,7 +73,8 @@ public class Contrat implements Serializable{
     public void setSpecialite(Specialite specialite) {
         this.specialite = specialite;
     }
-    public Boolean getArchive() {
+
+    public boolean isArchive() {
         return archive;
     }
     public void setArchive(Boolean archive) {
