@@ -8,7 +8,6 @@ public class EtudiantDTO {
     private String prenomE;
     private Option op;
 
-    // Constructors, getters, and setters
 
     public EtudiantDTO() {
     }
