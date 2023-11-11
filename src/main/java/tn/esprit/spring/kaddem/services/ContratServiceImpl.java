@@ -26,7 +26,6 @@ public class ContratServiceImpl implements IContratService{
 		return  contratRepository.findAll();
 	}
 
-	@Override
 	public Contrat updateContrat(ContratDTO ce) {
 		// Conversion from DTO to entity should be implemented here
 		// Assuming you have a method to convert DTO to entity
@@ -48,9 +47,7 @@ public class ContratServiceImpl implements IContratService{
 	}
 
 
-	public Contrat updateContrat (Contrat  ce){
-		return contratRepository.save(ce);
-	}
+	
 
 	public  Contrat addContrat (Contrat ce){
 		return contratRepository.save(ce);
