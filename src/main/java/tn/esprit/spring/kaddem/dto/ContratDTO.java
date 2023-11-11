@@ -15,7 +15,7 @@ public class ContratDTO {
     public ContratDTO() {
     }
 
-    public ContratDTO(Date dateDebutContrat, Date dateFinContrat, Specialite specialite, Boolean archive,
+    public ContratDTO1(Date dateDebutContrat, Date dateFinContrat, Specialite specialite, Boolean archive,
                    Integer montantContrat) {
         super();
         this.dateDebutContrat = dateDebutContrat;
@@ -25,7 +25,7 @@ public class ContratDTO {
         this.montantContrat = montantContrat;
     }
 
-    public ContratDTO(Integer idContrat, Date dateDebutContrat, Date dateFinContrat, Specialite specialite,
+    public ContratDTO2(Integer idContrat, Date dateDebutContrat, Date dateFinContrat, Specialite specialite,
                    Boolean archive, Integer montantContrat) {
         super();
         this.idContrat = idContrat;
