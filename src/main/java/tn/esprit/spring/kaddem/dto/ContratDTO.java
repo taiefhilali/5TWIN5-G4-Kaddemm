@@ -15,20 +15,17 @@ public class ContratDTO {
     public ContratDTO() {
     }
 
+     // Constructor without idContrat, which initializes the common fields
     public ContratDTO(Date dateDebutContrat, Date dateFinContrat, Specialite specialite, Boolean archive,
-                   Integer montantContrat) {
-        this(null, dateDebutContrat, dateFinContrat, specialite, archive, montantContrat);
+                      Integer montantContrat) {
+        super(dateDebutContrat, dateFinContrat, specialite, archive, montantContrat);
     }
 
     // Full constructor
     public ContratDTO(Integer idContrat, Date dateDebutContrat, Date dateFinContrat, Specialite specialite,
-                   Boolean archive, Integer montantContrat) {
+                      Boolean archive, Integer montantContrat) {
+        super(dateDebutContrat, dateFinContrat, specialite, archive, montantContrat);
         this.idContrat = idContrat;
-        this.dateDebutContrat = dateDebutContrat;
-        this.dateFinContrat = dateFinContrat;
-        this.specialite = specialite;
-        this.archive = archive;
-        this.montantContrat = montantContrat;
     }
 
     public Integer getIdContrat() {
