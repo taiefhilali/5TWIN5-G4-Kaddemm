@@ -74,6 +74,10 @@ public class Contrat implements Serializable{
         this.specialite = specialite;
     }
 
+        public Boolean getArchive() {
+        return archive;
+    }
+
     public boolean isArchive() {
         return archive;
     }
