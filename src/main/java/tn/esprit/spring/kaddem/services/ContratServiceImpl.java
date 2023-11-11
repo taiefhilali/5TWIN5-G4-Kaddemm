@@ -28,8 +28,25 @@ public class ContratServiceImpl implements IContratService{
 
 	@Override
 	public Contrat updateContrat(ContratDTO ce) {
-		return null;
+		// Conversion from DTO to entity should be implemented here
+		// Assuming you have a method to convert DTO to entity
+		Contrat contratToUpdate = convertDtoToEntity(ce);
+		return contratRepository.save(contratToUpdate);
 	}
+
+	private Contrat convertDtoToEntity(ContratDTO contratDTO) {
+		Contrat contrat = new Contrat();
+		contrat.setIdContrat(contratDTO.getIdContrat());
+		contrat.setDateDebutContrat(contratDTO.getDateDebutContrat());
+		contrat.setDateFinContrat(contratDTO.getDateFinContrat());
+		contrat.setSpecialite(contratDTO.getSpecialite());
+		contrat.setArchive(contratDTO.getArchive());
+		contrat.setMontantContrat(contratDTO.getMontantContrat());
+
+	
+		return contrat;
+	}
+
 
 	public Contrat updateContrat (Contrat  ce){
 		return contratRepository.save(ce);
