@@ -76,8 +76,7 @@
             <!-- Deploy to Nexus -->
 	<distributionManagement>
 		<repository>
-			<!--<id>deploymentRepo</id>-->
-			<id>snapshotRepo</id>
+			<id>deploymentRepo</id>
 			<name>Nexus Repository</name>
 			<url>http://172.10.0.140:8081/repository/maven-snapshots/</url>
 		</repository>
