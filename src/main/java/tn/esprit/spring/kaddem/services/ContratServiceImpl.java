@@ -11,6 +11,7 @@ import tn.esprit.spring.kaddem.entities.Specialite;
 import tn.esprit.spring.kaddem.repositories.ContratRepository;
 import tn.esprit.spring.kaddem.repositories.EtudiantRepository;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -27,8 +28,6 @@ public class ContratServiceImpl implements IContratService{
 	}
 
 	public Contrat updateContrat(ContratDTO ce) {
-		// Conversion from DTO to entity should be implemented here
-		// Assuming you have a method to convert DTO to entity
 		Contrat contratToUpdate = convertDtoToEntity(ce);
 		return contratRepository.save(contratToUpdate);
 	}
@@ -87,27 +86,30 @@ public class ContratServiceImpl implements IContratService{
 		return contratRepository.getnbContratsValides(startDate, endDate);
 	}
 
-	public void retrieveAndUpdateStatusContrat(){
-		List<Contrat>contrats=contratRepository.findAll();
-		List<Contrat>contrats15j=null;
-		List<Contrat>contratsAarchiver=null;
+	public void retrieveAndUpdateStatusContrat() {
+		List<Contrat> contrats = contratRepository.findAll();
+		List<Contrat> contrats15j = new ArrayList<>(); // Initialize the list
+		List<Contrat> contratsAarchiver = new ArrayList<>(); // Initialize the list
+
 		for (Contrat contrat : contrats) {
 			Date dateSysteme = new Date();
 			if (!contrat.getArchive()) {
 				long differenceInTime = dateSysteme.getTime() - contrat.getDateFinContrat().getTime();
 				long differenceInDays = (differenceInTime / (1000 * 60 * 60 * 24)) % 365;
-				if (differenceInDays==15){
+				if (differenceInDays == 15) {
 					contrats15j.add(contrat);
-					log.info(" Contrat : " + contrat);
+					log.info("Contrat à 15 jours de l'expiration : " + contrat);
 				}
-				if (differenceInDays==0) {
+				if (differenceInDays == 0) {
 					contratsAarchiver.add(contrat);
 					contrat.setArchive(true);
 					contratRepository.save(contrat);
 				}
 			}
 		}
+
 	}
+
 	public float getChiffreAffaireEntreDeuxDates(Date startDate, Date endDate){
 		float differenceInTime = endDate.getTime() - (float)startDate.getTime();
 		float differenceInDays = (differenceInTime / (1000 * 60 * 60 * 24)) % 365;
