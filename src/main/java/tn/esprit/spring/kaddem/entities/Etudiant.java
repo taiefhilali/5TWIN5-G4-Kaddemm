@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
 import java.util.HashSet;
+import java.util.ArrayList;
 
 
 import javax.persistence.*;
