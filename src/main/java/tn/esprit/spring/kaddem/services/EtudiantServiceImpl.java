@@ -1,6 +1,4 @@
 package tn.esprit.spring.kaddem.services;
-import javax.persistence.EntityNotFoundException;
-
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -43,11 +41,16 @@ public class EtudiantServiceImpl implements IEtudiantService{
 		return etudiantRepository.save(e);
 	}
 
-
-
 	public Etudiant retrieveEtudiant(Integer idEtudiant) {
-		return etudiantRepository.findById(idEtudiant)
-				.orElseThrow(() -> new EntityNotFoundException("Etudiant not found with id: " + idEtudiant));
+		Optional<Etudiant> etudiantOptional = etudiantRepository.findById(idEtudiant);
+
+		if (etudiantOptional.isPresent()) {
+			return etudiantOptional.get();
+		} else {
+			// Handle the case when Etudiant with the given ID is not found
+			// You can throw an exception or return a default value, or take any other appropriate action.
+			return null; // Example: returning null
+		}
 	}
 
 
@@ -60,38 +63,33 @@ public class EtudiantServiceImpl implements IEtudiantService{
 		Optional<Etudiant> etudiantOptional = etudiantRepository.findById(etudiantId);
 		Optional<Departement> departementOptional = departementRepository.findById(departementId);
 
-		if (!etudiantOptional.isPresent()) {
-			throw new EntityNotFoundException("Etudiant not found with id: " + etudiantId);
+		if (etudiantOptional.isPresent() && departementOptional.isPresent()) {
+			Etudiant etudiant = etudiantOptional.get();
+			Departement departement = departementOptional.get();
+			etudiant.setDepartement(departement);
+			etudiantRepository.save(etudiant);
+		} else {
+			// Handle the case when either Etudiant or Departement is not found.
+			// You can throw an exception or take any other appropriate action.
+			// For example, you can log an error message or notify the user.
 		}
-
-		if (!departementOptional.isPresent()) {
-			throw new EntityNotFoundException("Departement not found with id: " + departementId);
-		}
-
-		Etudiant etudiant = etudiantOptional.get();
-		Departement departement = departementOptional.get();
-
-		etudiant.setDepartement(departement);
-		etudiantRepository.save(etudiant);
 	}
-
-
-
 
 	@Transactional
 	public Etudiant addAndAssignEtudiantToEquipeAndContract(Etudiant e, Integer idContrat, Integer idEquipe) {
-		Contrat c = contratRepository.findById(idContrat)
-				.orElseThrow(() -> new EntityNotFoundException("Contract not found with id: " + idContrat));
-		Equipe eq = equipeRepository.findById(idEquipe)
-				.orElseThrow(() -> new EntityNotFoundException("Equipe not found with id: " + idEquipe));
+		Contrat c = contratRepository.findById(idContrat).orElse(null);
+		Equipe eq = equipeRepository.findById(idEquipe).orElse(null);
 
-		c.setEtudiant(e);
-		eq.getEtudiants().add(e);
-
-		contratRepository.save(c);
-		equipeRepository.save(eq);
-
-		return e;
+		if (c != null && eq != null) {
+			c.setEtudiant(e);
+			eq.getEtudiants().add(e);
+			return e;
+		} else {
+			// Handle the case when either Contrat or Equipe is not found.
+			// You can throw an exception or take any other appropriate action.
+			// For example, you can log an error message or notify the user.
+			return null; // Or return some other value indicating failure.
+		}
 	}
 
 
