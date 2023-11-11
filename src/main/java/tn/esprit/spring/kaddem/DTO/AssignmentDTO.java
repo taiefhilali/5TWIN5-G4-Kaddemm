@@ -1,4 +1,4 @@
-package tn.esprit.spring.kaddem.dto;
+package tn.esprit.spring.kaddem.DTO;
 
 public class AssignmentDTO {
      Integer idContrat;
