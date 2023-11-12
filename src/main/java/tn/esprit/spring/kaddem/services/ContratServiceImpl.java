@@ -11,7 +11,6 @@ import tn.esprit.spring.kaddem.entities.Specialite;
 import tn.esprit.spring.kaddem.repositories.ContratRepository;
 import tn.esprit.spring.kaddem.repositories.EtudiantRepository;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -19,32 +18,18 @@ import java.util.Set;
 @Slf4j
 @Service
 public class ContratServiceImpl implements IContratService{
-	@Autowired
-	ContratRepository contratRepository;
-	@Autowired
+@Autowired
+ContratRepository contratRepository;
+@Autowired
 	EtudiantRepository etudiantRepository;
 	public List<Contrat> retrieveAllContrats(){
 		return  contratRepository.findAll();
 	}
 
+	@Override
 	public Contrat updateContrat(ContratDTO ce) {
-		Contrat contratToUpdate = convertDtoToEntity(ce);
-		return contratRepository.save(contratToUpdate);
+		return null;
 	}
-
-	private Contrat convertDtoToEntity(ContratDTO contratDTO) {
-		Contrat contrat = new Contrat();
-		contrat.setIdContrat(contratDTO.getIdContrat());
-		contrat.setDateDebutContrat(contratDTO.getDateDebutContrat());
-		contrat.setDateFinContrat(contratDTO.getDateFinContrat());
-		contrat.setSpecialite(contratDTO.getSpecialite());
-		contrat.setArchive(contratDTO.getArchive());
-		contrat.setMontantContrat(contratDTO.getMontantContrat());
-
-
-		return contrat;
-	}
-
 
 	public Contrat updateContrat (Contrat  ce){
 		return contratRepository.save(ce);
@@ -72,50 +57,46 @@ public class ContratServiceImpl implements IContratService{
 		Integer nbContratssActifs=0;
 		if (!contrats.isEmpty()) {
 			for (Contrat contrat : contrats) {
-				if (((!contrat.getArchive()) &&contrat.getArchive()))  {
+				if (((!contrat.isArchive()) &&contrat.isArchive()))  {
 					nbContratssActifs++;
 				}
 			}
 		}
 		if (nbContratssActifs<=4){
-			ce.setEtudiant(e);
-			contratRepository.save(ce);}
+		ce.setEtudiant(e);
+		contratRepository.save(ce);}
 		return ce;
 	}
 	public 	Integer nbContratsValides(Date startDate, Date endDate){
 		return contratRepository.getnbContratsValides(startDate, endDate);
 	}
 
-	public void retrieveAndUpdateStatusContrat() {
-		List<Contrat> contrats = contratRepository.findAll();
-		List<Contrat> contrats15j = new ArrayList<>(); // Initialize the list
-		List<Contrat> contratsAarchiver = new ArrayList<>(); // Initialize the list
-
+	public void retrieveAndUpdateStatusContrat(){
+		List<Contrat>contrats=contratRepository.findAll();
+		List<Contrat>contrats15j=null;
+		List<Contrat>contratsAarchiver=null;
 		for (Contrat contrat : contrats) {
 			Date dateSysteme = new Date();
-			    Boolean archiveStatus = contrat.getArchive();
-    if (archiveStatus != null && !archiveStatus) {
+			if (!contrat.isArchive()) {
 				long differenceInTime = dateSysteme.getTime() - contrat.getDateFinContrat().getTime();
 				long differenceInDays = (differenceInTime / (1000 * 60 * 60 * 24)) % 365;
-				if (differenceInDays == 15) {
+				if (differenceInDays==15){
 					contrats15j.add(contrat);
-					log.info("Contrat à 15 jours de l'expiration : " + contrat);
+					log.info(" Contrat : " + contrat);
 				}
-				if (differenceInDays == 0) {
+				if (differenceInDays==0) {
 					contratsAarchiver.add(contrat);
 					contrat.setArchive(true);
 					contratRepository.save(contrat);
 				}
 			}
 		}
-
 	}
-
 	public float getChiffreAffaireEntreDeuxDates(Date startDate, Date endDate){
 		float differenceInTime = endDate.getTime() - (float)startDate.getTime();
 		float differenceInDays = (differenceInTime / (1000 * 60 * 60 * 24)) % 365;
 		float differenceInmonths =differenceInDays/30;
-		List<Contrat> contrats=contratRepository.findAll();
+        List<Contrat> contrats=contratRepository.findAll();
 		float chiffreAffaireEntreDeuxDates=0;
 		for (Contrat contrat : contrats) {
 			if (contrat.getSpecialite()== Specialite.IA){
@@ -127,8 +108,8 @@ public class ContratServiceImpl implements IContratService{
 				chiffreAffaireEntreDeuxDates+=(differenceInmonths*350);
 			}
 			else
-			{
-				chiffreAffaireEntreDeuxDates+=(differenceInmonths*450);
+			 {
+				 chiffreAffaireEntreDeuxDates+=(differenceInmonths*450);
 			}
 		}
 		return chiffreAffaireEntreDeuxDates;
