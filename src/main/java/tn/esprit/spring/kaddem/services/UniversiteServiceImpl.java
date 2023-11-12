@@ -9,6 +9,8 @@ import tn.esprit.spring.kaddem.repositories.UniversiteRepository;
 
 import java.util.List;
 import java.util.Set;
+import java.util.Optional;
+
 
 @Service
 public class UniversiteServiceImpl implements IUniversiteService{
@@ -31,10 +33,17 @@ return  (universiteRepository.save(u));
      return  (universiteRepository.save(u));
     }
 
-  public Universite retrieveUniversite (Integer idUniversite){
-Universite u = universiteRepository.findById(idUniversite).get();
-return  u;
+ public Universite retrieveUniversite(Integer idUniversite){
+    Optional<Universite> optionalUniversite = universiteRepository.findById(idUniversite);
+    if (optionalUniversite.isPresent()) {
+        return optionalUniversite.get();
+    } else {
+        // Handle the case where the Universite is not found
+        // For example, you might return null or throw an exception
+        return null; // or throw new EntityNotFoundException("Universite not found for id " + idUniversite);
     }
+}
+
     public  void deleteUniversite(Integer idUniversite){
         universiteRepository.delete(retrieveUniversite(idUniversite));
     }
