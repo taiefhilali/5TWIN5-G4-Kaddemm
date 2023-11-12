@@ -29,7 +29,7 @@ public class EtudiantTestMockito {
 
     @Before
     public void setup() {
-        etudiant = new Etudiant(1, "Doe", "John", Option.GAMIX);
+        etudiant = new Etudiant(1, "Doe", "John");
     }
 
     @Test
