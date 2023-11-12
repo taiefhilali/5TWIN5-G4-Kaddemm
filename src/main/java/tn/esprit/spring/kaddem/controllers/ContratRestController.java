@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/contrat")
-@CrossOrigin
+@CrossOrigin(origins= "http://172.10.0.140:8080")
 public class ContratRestController {
 
 	IContratService contratService;
