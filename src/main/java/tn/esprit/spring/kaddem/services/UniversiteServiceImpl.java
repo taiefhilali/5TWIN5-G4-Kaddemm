@@ -39,7 +39,7 @@ return  (universiteRepository.save(u));
     if (optionalUniversite.isPresent()) {
         return optionalUniversite.get();
     } else {
-        return null; // or throw new EntityNotFoundException("Universite not found for id " + idUniversite);
+        return null; 
     }
 }
 
