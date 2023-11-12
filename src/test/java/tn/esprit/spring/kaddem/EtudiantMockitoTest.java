@@ -17,7 +17,7 @@ import tn.esprit.spring.kaddem.services.EtudiantServiceImpl;
 import java.util.Optional;
 
 @RunWith(MockitoJUnitRunner.class)
-public class EtudiantTestMockito {
+class EtudiantMockitoTest {
 
     @Mock
     private EtudiantRepository etudiantRepository;
