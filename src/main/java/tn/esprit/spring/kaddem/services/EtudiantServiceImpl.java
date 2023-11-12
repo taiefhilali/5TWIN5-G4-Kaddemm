@@ -95,6 +95,6 @@ public class EtudiantServiceImpl implements IEtudiantService{
 
 
 	public 	List<Etudiant> getEtudiantsByDepartement (Integer idDepartement){
-return  etudiantRepository.findEtudiantsByDepartement_IdDepart((idDepartement));
+return  etudiantRepository.findEtudiantsByDepartementIdDepart((idDepartement));
 	}
 }
