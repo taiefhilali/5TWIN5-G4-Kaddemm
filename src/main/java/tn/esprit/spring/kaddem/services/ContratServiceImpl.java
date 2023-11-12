@@ -14,6 +14,8 @@ import tn.esprit.spring.kaddem.repositories.EtudiantRepository;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
+import java.util.ArrayList;
+
 
 @Slf4j
 @Service
@@ -71,27 +73,29 @@ ContratRepository contratRepository;
 		return contratRepository.getnbContratsValides(startDate, endDate);
 	}
 
-	public void retrieveAndUpdateStatusContrat(){
-		List<Contrat>contrats=contratRepository.findAll();
-		List<Contrat>contrats15j=null;
-		List<Contrat>contratsAarchiver=null;
-		for (Contrat contrat : contrats) {
-			Date dateSysteme = new Date();
-			if (!contrat.isArchive()) {
-				long differenceInTime = dateSysteme.getTime() - contrat.getDateFinContrat().getTime();
-				long differenceInDays = (differenceInTime / (1000 * 60 * 60 * 24)) % 365;
-				if (differenceInDays==15){
-					contrats15j.add(contrat);
-					log.info(" Contrat : " + contrat);
-				}
-				if (differenceInDays==0) {
-					contratsAarchiver.add(contrat);
-					contrat.setArchive(true);
-					contratRepository.save(contrat);
-				}
-			}
-		}
-	}
+	public void retrieveAndUpdateStatusContrat() {
+    List<Contrat> contrats = contratRepository.findAll();
+    List<Contrat> contrats15j = new ArrayList<>(); // Initialized the list
+    List<Contrat> contratsAarchiver = new ArrayList<>(); // Initialized the list
+
+    for (Contrat contrat : contrats) {
+        Date dateSysteme = new Date();
+        if (!contrat.isArchive()) {
+            long differenceInTime = dateSysteme.getTime() - contrat.getDateFinContrat().getTime();
+            long differenceInDays = (differenceInTime / (1000 * 60 * 60 * 24)) % 365;
+            if (differenceInDays == 15) {
+                contrats15j.add(contrat);
+                log.info(" Contrat : " + contrat);
+            }
+            if (differenceInDays == 0) {
+                contratsAarchiver.add(contrat);
+                contrat.setArchive(true);
+                contratRepository.save(contrat);
+            }
+        }
+    }
+}
+
 	public float getChiffreAffaireEntreDeuxDates(Date startDate, Date endDate){
 		float differenceInTime = endDate.getTime() - (float)startDate.getTime();
 		float differenceInDays = (differenceInTime / (1000 * 60 * 60 * 24)) % 365;
