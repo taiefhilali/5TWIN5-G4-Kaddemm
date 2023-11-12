@@ -28,12 +28,12 @@ class EtudiantMockitoTest {
     private Etudiant etudiant;
 
     @Before
-    public void setup() {
+     void setup() {
         etudiant = new Etudiant(1, "Doe", "John");
     }
 
     @Test
-    public void testCreateEtudiant() {
+     void testCreateEtudiant() {
         when(etudiantRepository.save(any(Etudiant.class))).thenReturn(etudiant);
 
         Etudiant created = etudiantService.addEtudiant(etudiant);
@@ -43,7 +43,7 @@ class EtudiantMockitoTest {
     }
 
     @Test
-    public void testGetEtudiantById() {
+     void testGetEtudiantById() {
         when(etudiantRepository.findById(1)).thenReturn(Optional.of(etudiant));
 
         Etudiant found = etudiantService.retrieveEtudiant(1);
