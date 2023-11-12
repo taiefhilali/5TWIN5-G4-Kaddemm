@@ -21,6 +21,7 @@ public class UniversiteServiceImpl implements IUniversiteService{
 @Autowired
     DepartementRepository departementRepository;
     public UniversiteServiceImpl() {
+            // Default constructor required for certain frameworks or instantiation scenarios
     }
   public   List<Universite> retrieveAllUniversites(){
 return (List<Universite>) universiteRepository.findAll();
