@@ -49,4 +49,11 @@ public class Etudiant implements Serializable{
         this.equipes = new ArrayList<>(); // Assuming you want an empty list
     }
 
+    public Etudiant(int id, String nomE, String prenomE) {
+        this.idEtudiant = id;
+         this.nomE = nomE;
+        this.prenomE = prenomE;
+}
+
+
 }
