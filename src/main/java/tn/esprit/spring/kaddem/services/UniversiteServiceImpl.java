@@ -19,7 +19,6 @@ public class UniversiteServiceImpl implements IUniversiteService{
 @Autowired
     DepartementRepository departementRepository;
     public UniversiteServiceImpl() {
-        // TODO Auto-generated constructor stub
     }
   public   List<Universite> retrieveAllUniversites(){
 return (List<Universite>) universiteRepository.findAll();
@@ -38,8 +37,6 @@ return  (universiteRepository.save(u));
     if (optionalUniversite.isPresent()) {
         return optionalUniversite.get();
     } else {
-        // Handle the case where the Universite is not found
-        // For example, you might return null or throw an exception
         return null; // or throw new EntityNotFoundException("Universite not found for id " + idUniversite);
     }
 }
