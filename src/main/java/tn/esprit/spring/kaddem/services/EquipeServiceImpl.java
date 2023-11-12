@@ -74,24 +74,26 @@ public void evoluerEquipes() {
 	}
 
 	private int countActiveContracts(List<Etudiant> etudiants) {
-		int nbEtudiantsAvecContratsActifs = 0;
+    int nbEtudiantsAvecContratsActifs = 0;
 
-		for (Etudiant etudiant : etudiants) {
-			Set<Contrat> contrats = etudiant.getContrats();
+    for (Etudiant etudiant : etudiants) {
+        Set<Contrat> contrats = etudiant.getContrats();
 
-			for (Contrat contrat : contrats) {
-				if (!contrat.getArchive() && isContractActiveForYears(contrat, 1)) {
-					nbEtudiantsAvecContratsActifs++;
-					break;
-				}
-			}
-			if (nbEtudiantsAvecContratsActifs >= 3) {
-				break;
-			}
-		}
+        for (Contrat contrat : contrats) {
+            Boolean archiveStatus = contrat.getArchive();
+            if (archiveStatus != null && !archiveStatus && isContractActiveForYears(contrat, 1)) {
+                nbEtudiantsAvecContratsActifs++;
+                break;
+            }
+        }
+        if (nbEtudiantsAvecContratsActifs >= 3) {
+            break;
+        }
+    }
 
-		return nbEtudiantsAvecContratsActifs;
-	}
+    return nbEtudiantsAvecContratsActifs;
+}
+
 
 	private boolean isContractActiveForYears(Contrat contrat, int years) {
 		Date currentDate = new Date();
