@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.Optional;
 import javax.persistence.EntityNotFoundException;
+import java.util.HashSet;
 
 
 
@@ -60,9 +61,14 @@ return  (universiteRepository.save(u));
     }
 }
 
+public Set<Departement> retrieveDepartementsByUniversite(Integer idUniversite) {
+    Universite u = universiteRepository.findById(idUniversite).orElse(null);
 
-    public Set<Departement> retrieveDepartementsByUniversite(Integer idUniversite){
-Universite u=universiteRepository.findById(idUniversite).orElse(null);
-return u.getDepartements();
+    if (u != null) {
+        return u.getDepartements();
+    } else {
+        return new HashSet<>();
     }
+}
+
 }
