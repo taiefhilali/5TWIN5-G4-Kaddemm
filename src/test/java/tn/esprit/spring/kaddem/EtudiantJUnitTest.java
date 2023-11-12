@@ -23,17 +23,17 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 
     @BeforeEach
-     void setUp() {
+   public  void setUp() {
         etudiantRepository.deleteAll();
     }
 
     @AfterEach
-     void tearDown() {
+   public  void tearDown() {
         etudiantRepository.deleteAll();
     }
 
     @Test
-     void SaveEtudiant() {
+   public  void SaveEtudiant() {
         Etudiant etudiant = new Etudiant("Zeineb", "Haraketi");
         Etudiant savedEtudiant = etudiantRepository.save(etudiant);
 
@@ -42,7 +42,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
     }
 
     @Test
-     void FindEtudiantById() {
+   public  void FindEtudiantById() {
         Etudiant etudiant = new Etudiant("Zeineb", "Haraketi");
         etudiant = etudiantRepository.save(etudiant);
 
@@ -53,7 +53,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
     }
 
     @Test
-     void UpdateEtudiant() {
+  public   void UpdateEtudiant() {
         Etudiant etudiant = new Etudiant("Zeineb", "Haraketi");
         etudiant = etudiantRepository.save(etudiant);
 
@@ -66,7 +66,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
     }
 
     @Test
-     void DeleteEtudiant() {
+  public   void DeleteEtudiant() {
         Etudiant etudiant = new Etudiant("Zeineb", "Haraketi");
         etudiant = etudiantRepository.save(etudiant);
 
