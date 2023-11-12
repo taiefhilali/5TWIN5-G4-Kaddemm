@@ -10,6 +10,7 @@ import tn.esprit.spring.kaddem.entities.Contrat;
 import java.util.Date;
 import java.util.List;
 
+
 @Repository
 public interface ContratRepository extends CrudRepository<Contrat, Integer> {
 
