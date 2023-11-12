@@ -34,7 +34,7 @@ public class EtudiantTestJUnit {
 
     @Test
     public void SaveEtudiant() {
-        Etudiant etudiant = new Etudiant("Zeineb", "Haraketi", Option.SE);
+        Etudiant etudiant = new Etudiant("Zeineb", "Haraketi");
         Etudiant savedEtudiant = etudiantRepository.save(etudiant);
 
         assertNotNull(savedEtudiant.getIdEtudiant());
@@ -43,7 +43,7 @@ public class EtudiantTestJUnit {
 
     @Test
      void FindEtudiantById() {
-        Etudiant etudiant = new Etudiant("Zeineb", "Haraketi", Option.SE);
+        Etudiant etudiant = new Etudiant("Zeineb", "Haraketi");
         etudiant = etudiantRepository.save(etudiant);
 
         Etudiant foundEtudiant = etudiantRepository.findById(etudiant.getIdEtudiant()).orElse(null);
@@ -54,7 +54,7 @@ public class EtudiantTestJUnit {
 
     @Test
     public void UpdateEtudiant() {
-        Etudiant etudiant = new Etudiant("Zeineb", "Haraketi", Option.SE);
+        Etudiant etudiant = new Etudiant("Zeineb", "Haraketi");
         etudiant = etudiantRepository.save(etudiant);
 
         Etudiant foundEtudiant = etudiantRepository.findById(etudiant.getIdEtudiant()).get();
@@ -67,7 +67,7 @@ public class EtudiantTestJUnit {
 
     @Test
     public void DeleteEtudiant() {
-        Etudiant etudiant = new Etudiant("Zeineb", "Haraketi", Option.SE);
+        Etudiant etudiant = new Etudiant("Zeineb", "Haraketi");
         etudiant = etudiantRepository.save(etudiant);
 
         etudiantRepository.deleteById(etudiant.getIdEtudiant());
