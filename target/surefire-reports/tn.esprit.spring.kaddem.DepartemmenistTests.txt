@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: tn.esprit.spring.kaddem.DepartemmenistTests
 -------------------------------------------------------------------------------
-Tests run: 8, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.257 s <<< FAILURE! - in tn.esprit.spring.kaddem.DepartemmenistTests
-testRetrieveAllDepartementsController  Time elapsed: 0.064 s  <<< FAILURE!
-org.opentest4j.AssertionFailedError: expected: <2> but was: <35>
+Tests run: 7, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.433 s <<< FAILURE! - in tn.esprit.spring.kaddem.DepartemmenistTests
+testRetrieveAllDepartementsController  Time elapsed: 0.067 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <2> but was: <43>
 	at tn.esprit.spring.kaddem.DepartemmenistTests.testRetrieveAllDepartementsController(DepartemmenistTests.java:108)
 

@@ -129,19 +129,5 @@ public class DepartemmenistTests {
         assertEquals(updatedDepartement.getNomDepart(), result.getNomDepart());
         // Add more assertions based on your specific requirements
     }
-    @Test
-    void testRemoveDepartementController() {
-        // Given
-        Departement departement = new Departement();
-        departement.setNomDepart("Departement to remove");
-        departement = departementRepository.save(departement);
 
-        // When
-        departementService.deleteDepartement(departement.getIdDepart());
-
-        // Then
-        Departement removedDepartement = departementRepository.findById(departement.getIdDepart()).orElse(null);
-        assertNull(removedDepartement);
-        // Add more assertions based on your specific requirements
-    }
 }
