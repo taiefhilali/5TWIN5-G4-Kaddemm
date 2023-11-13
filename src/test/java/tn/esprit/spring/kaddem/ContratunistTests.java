@@ -109,35 +109,6 @@ import static org.mockito.Mockito.when;
 
 }
 
-    @Test
-    void testConstructorWithName() {
-        // Actual test
-        Etudiant etudiant = new Etudiant("John", "Doe");
 
-        // Assertions
-        assertNotNull(etudiant);
-        assertEquals("John", etudiant.getNomE());
-        assertEquals("Doe", etudiant.getPrenomE());
-        assertNull(etudiant.getOp()); // Assuming Option op is initialized to null
-        assertTrue(etudiant.getContrats().isEmpty()); // Assuming Contrats is initialized as an empty set
-        assertNull(etudiant.getDepartement()); // Assuming Departement is initialized to null
-        assertTrue(etudiant.getEquipes().isEmpty()); // Assuming Equipes is initialized as an empty list
-    }
 
-   
-    @Test
-    void testSetAndGetOp() {
-        // Create an EtudiantDTO object
-        EtudiantDTO etudiantDTO = new EtudiantDTO();
-
-        // Set the Option field
-        Option option = Option.GAMIX;
-        etudiantDTO.setOp(option);
-
-        // Get the Option field
-        Option retrievedOption = etudiantDTO.getOp();
-
-        // Assertions
-        assertEquals(option, retrievedOption);
-    }
 }

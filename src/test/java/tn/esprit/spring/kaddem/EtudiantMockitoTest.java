@@ -1,5 +1,6 @@
 package tn.esprit.spring.kaddem;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 import static org.junit.Assert.*;
 
@@ -53,7 +54,7 @@ class EtudiantMockitoTest {
         assertEquals("John", found.getPrenomE());
     }
 
-    /* @Test
+     @Test
     public void testUpdateEtudiant() {
         when(etudiantRepository.findById(1)).thenReturn(Optional.of(etudiant));
         when(etudiantRepository.save(any(Etudiant.class))).thenReturn(etudiant);
@@ -80,7 +81,7 @@ class EtudiantMockitoTest {
 
         // Vérification que la méthode deleteById a été appelée sur le repository.
         verify(etudiantRepository).deleteById(etudiantId);
-    }*/
+    }
 
     @Test
     public void testConstructorAndGetters() {
@@ -121,5 +122,35 @@ class EtudiantMockitoTest {
         assertEquals(newPrenom, etudiantDTO.getPrenomE());
         assertEquals(newOption, etudiantDTO.getOp());
     }
+      @org.junit.jupiter.api.Test
+
+    void testConstructorWithoutId() {
+        Etudiant etudiant = new Etudiant("John", "Doe");
+
+        assertEquals("John", etudiant.getNomE());
+        assertEquals("Doe", etudiant.getPrenomE());
+        assertNull(etudiant.getOp());
+        assertTrue(etudiant.getContrats().isEmpty());
+        assertNull(etudiant.getDepartement());
+        assertTrue(etudiant.getEquipes().isEmpty());
+    }
+
+
+    @org.junit.jupiter.api.Test
+    void testSetAndGetOp() {
+        // Create an EtudiantDTO object
+        EtudiantDTO etudiantDTO = new EtudiantDTO();
+
+        // Set the Option field
+        Option option = Option.GAMIX;
+        etudiantDTO.setOp(option);
+
+        // Get the Option field
+        Option retrievedOption = etudiantDTO.getOp();
+
+        // Assertions
+        assertEquals(option, retrievedOption);
+    }
+
 
 }
