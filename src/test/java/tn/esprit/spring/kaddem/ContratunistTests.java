@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Configuration;
 import tn.esprit.spring.kaddem.entities.Contrat;
+import tn.esprit.spring.kaddem.entities.Etudiant;
 import tn.esprit.spring.kaddem.entities.Specialite;
 import tn.esprit.spring.kaddem.repositories.ContratRepository;
 import tn.esprit.spring.kaddem.services.ContratServiceImpl;
@@ -104,4 +105,36 @@ import static org.mockito.Mockito.when;
 
         assertNull(removedContrat);
 
-}}
+}
+
+    @Test
+    void testConstructorWithName() {
+        // Actual test
+        Etudiant etudiant = new Etudiant("John", "Doe");
+
+        // Assertions
+        assertNotNull(etudiant);
+        assertEquals("John", etudiant.getNomE());
+        assertEquals("Doe", etudiant.getPrenomE());
+        assertNull(etudiant.getOp()); // Assuming Option op is initialized to null
+        assertTrue(etudiant.getContrats().isEmpty()); // Assuming Contrats is initialized as an empty set
+        assertNull(etudiant.getDepartement()); // Assuming Departement is initialized to null
+        assertTrue(etudiant.getEquipes().isEmpty()); // Assuming Equipes is initialized as an empty list
+    }
+
+    @Test
+    void testConstructorWithIdAndName() {
+        // Actual test
+        Etudiant etudiant = new Etudiant(1, "Jane", "Doe");
+
+        // Assertions
+        assertNotNull(etudiant);
+        assertEquals(1, etudiant.getIdEtudiant());
+        assertEquals("Jane", etudiant.getNomE());
+        assertEquals("Doe", etudiant.getPrenomE());
+        assertNull(etudiant.getOp());
+        assertTrue(etudiant.getContrats().isEmpty());
+        assertNull(etudiant.getDepartement());
+        assertTrue(etudiant.getEquipes().isEmpty());
+    }
+}
