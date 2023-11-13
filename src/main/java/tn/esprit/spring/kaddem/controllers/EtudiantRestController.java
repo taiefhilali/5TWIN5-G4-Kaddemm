@@ -12,7 +12,6 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/etudiant")
-@CrossOrigin(origins= "http://172.10.0.140:8080")
 public class EtudiantRestController {
 	@Autowired
 	IEtudiantService etudiantService;
@@ -76,7 +75,7 @@ public class EtudiantRestController {
 		etudiantService.assignEtudiantToDepartement(etudiantId, departementId);
 	}
 	//addAndAssignEtudiantToEquipeAndContract(Etudiant e, Integer idContrat, Integer idEquipe)
-	/* Ajouter un Ã©tudiant tout en lui affectant un contrat et une Ã©quipe */
+	/* Ajouter un étudiant tout en lui affectant un contrat et une équipe */
 	@PostMapping("/add-assign-Etudiant/{idContrat}/{idEquipe}")
 	@ResponseBody
 	public Etudiant addEtudiantWithEquipeAndContract(@RequestBody EtudiantDTO etudiantDTO,
@@ -101,5 +100,3 @@ public class EtudiantRestController {
 	}
 
 }
-
-

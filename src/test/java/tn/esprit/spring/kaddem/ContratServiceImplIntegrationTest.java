@@ -36,6 +36,23 @@ class ContratServiceImplIntegrationTest {
     private ContratServiceImpl contratService;
 
     @Test
+    void testConstructorWithValidValues() {
+        Date dateDebutContrat = new Date();
+        Date dateFinContrat = new Date();
+        Specialite specialite = Specialite.IA;
+        boolean archive = false;
+        int montantContrat = 1000;
+
+        Contrat instance = new Contrat(dateDebutContrat, dateFinContrat, specialite, archive, montantContrat);
+
+        assertNotNull(instance);
+        assertEquals(dateDebutContrat, instance.getDateDebutContrat());
+        assertEquals(dateFinContrat, instance.getDateFinContrat());
+        assertEquals(specialite, instance.getSpecialite());
+        assertEquals(archive, instance.isArchive());
+        assertEquals(montantContrat, instance.getMontantContrat());
+    }
+    @Test
     void testAddContrat() {
         Contrat contratToAdd = new Contrat();
         contratToAdd.setDateDebutContrat(new Date());
