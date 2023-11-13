@@ -9,6 +9,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import tn.esprit.spring.kaddem.dto.EtudiantDTO;
 import tn.esprit.spring.kaddem.entities.Etudiant;
 import tn.esprit.spring.kaddem.entities.Option;
 import tn.esprit.spring.kaddem.repositories.EtudiantRepository;
@@ -81,6 +82,44 @@ class EtudiantMockitoTest {
         verify(etudiantRepository).deleteById(etudiantId);
     }*/
 
+    @Test
+    public void testConstructorAndGetters() {
+        // Arrange
+        Integer id = 1;
+        String nom = "Doe";
+        String prenom = "John";
+        Option newOption = Option.SE;
 
+        // Act
+        EtudiantDTO etudiantDTO = new EtudiantDTO(id, nom, prenom, newOption.GAMIX);
+
+        // Assert
+        assertEquals(id, etudiantDTO.getIdEtudiant());
+        assertEquals(nom, etudiantDTO.getNomE());
+        assertEquals(prenom, etudiantDTO.getPrenomE());
+        assertEquals(newOption.GAMIX, etudiantDTO.getOp());
+    }
+
+    @Test
+    public void testSetters() {
+        // Arrange
+        EtudiantDTO etudiantDTO = new EtudiantDTO();
+        Integer newId = 2;
+        String newNom = "Smith";
+        String newPrenom = "Jane";
+        Option newOption = Option.SE;
+
+        // Act
+        etudiantDTO.setIdEtudiant(newId);
+        etudiantDTO.setNomE(newNom);
+        etudiantDTO.setPrenomE(newPrenom);
+        etudiantDTO.setOp(newOption);
+
+        // Assert
+        assertEquals(newId, etudiantDTO.getIdEtudiant());
+        assertEquals(newNom, etudiantDTO.getNomE());
+        assertEquals(newPrenom, etudiantDTO.getPrenomE());
+        assertEquals(newOption, etudiantDTO.getOp());
+    }
 
 }
