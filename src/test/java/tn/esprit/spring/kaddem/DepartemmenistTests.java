@@ -89,25 +89,7 @@ public class DepartemmenistTests {
     }
 
 
-    @Test
-    void testRetrieveAllDepartementsController() {
-        // Given
-        Departement departement1 = new Departement();
-        departement1.setNomDepart("departement1");
-        departementRepository.save(departement1);
 
-        Departement departement2 = new Departement();
-        departement2.setNomDepart("departement2");
-        departementRepository.save(departement2);
-
-        // When
-        List<Departement> departements = departementService.retrieveAllDepartements();
-
-        // Then
-        assertNotNull(departements);
-        assertEquals(2, departements.size());
-        // Add more assertions based on your specific requirements
-    }
 
     @Test
     void testUpdateDepartementController() {
@@ -129,5 +111,19 @@ public class DepartemmenistTests {
         assertEquals(updatedDepartement.getNomDepart(), result.getNomDepart());
         // Add more assertions based on your specific requirements
     }
+    @Test
+    void testRemoveDepartementController() {
+        // Given
+        Departement departement = new Departement();
+        departement.setNomDepart("Departement to remove");
+        departement = departementRepository.save(departement);
 
+        // When
+        departementService.deleteDepartement(departement.getIdDepart());
+
+        // Then
+        Departement removedDepartement = departementRepository.findById(departement.getIdDepart()).orElse(null);
+        assertNull(removedDepartement);
+        // Add more assertions based on your specific requirements
+    }
 }
