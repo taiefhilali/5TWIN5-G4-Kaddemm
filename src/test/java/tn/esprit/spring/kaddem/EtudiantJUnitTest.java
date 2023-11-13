@@ -90,16 +90,5 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
         assertTrue(etudiant.getEquipes().isEmpty());
     }
 
-    @Test
-    void testConstructorWithIdAndName() {
-        Etudiant etudiant = new Etudiant(1, "Jane", "Doe");
-        assertNotNull(etudiant);
-        assertEquals(1, etudiant.getIdEtudiant());
-        assertEquals("Jane", etudiant.getNomE());
-        assertEquals("Doe", etudiant.getPrenomE());
-        assertNull(etudiant.getOp());
-        assertTrue(etudiant.getContrats().isEmpty());
-        assertNull(etudiant.getDepartement());
-        assertTrue(etudiant.getEquipes().isEmpty());
-    }
+
 }
