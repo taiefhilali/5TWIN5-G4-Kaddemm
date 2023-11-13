@@ -17,6 +17,8 @@ public class Departement implements Serializable{
     @JsonIgnore
     private Set<Etudiant> etudiants;
     public Departement() {
+        super();
+
     }
 
     public Departement(String nomDepart) {

@@ -2,16 +2,25 @@ package tn.esprit.spring.kaddem.entities;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
 import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
+import java.util.HashSet;
+import java.util.ArrayList;
+
 
 import javax.persistence.*;
 
 
 @SuppressWarnings("SpellCheckingInspection")
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "etudiant")
 public class Etudiant implements Serializable{
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -26,82 +35,26 @@ public class Etudiant implements Serializable{
     @ManyToOne
     @JsonIgnore
     private Departement departement;
-  //  @ManyToMany(cascade =CascadeType.ALL)
     @ManyToMany(mappedBy="etudiants")
 
     @JsonIgnore
     private List<Equipe> equipes ;
-    public Etudiant() {
-        super();
-    }
 
     public Etudiant(String nomE, String prenomE) {
         this.nomE = nomE;
         this.prenomE = prenomE;
+        // Initialize other fields with default values or null
+        this.op = null; // Assuming 'Option op' is an enum and can be null
+        this.contrats = new HashSet<>(); // Assuming you want an empty set
+        this.departement = null; // Can be null if not yet assigned
+        this.equipes = new ArrayList<>(); // Assuming you want an empty list
     }
 
-    public Etudiant(String nomE, String prenomE, Option op) {
-        super();
+    public Etudiant(int id, String nomE, String prenomE) {
+        this.idEtudiant = id;
         this.nomE = nomE;
         this.prenomE = prenomE;
-        this.op = op;
     }
 
-    public Etudiant(Integer idEtudiant, String nomE, String prenomE, Option op) {
-        super();
-        this.idEtudiant = idEtudiant;
-        this.nomE = nomE;
-        this.prenomE = prenomE;
-        this.op = op;
-    }
-
-    public Set<Contrat> getContrats() {
-        return contrats;
-    }
-
-    public void setContrats(Set<Contrat> contratss) {
-        contrats = contratss;
-    }
-
-    public Departement getDepartement() {
-        return departement;
-    }
-
-    public void setDepartement(Departement departement) {
-        this.departement = departement;
-    }
-
-    public List<Equipe> getEquipes() {
-        return equipes;
-    }
-
-    public void setEquipes(List<Equipe> equipes) {
-        this.equipes = equipes;
-    }
-
-    public Integer getIdEtudiant() {
-        return idEtudiant;
-    }
-    public void setIdEtudiant(Integer idEtudiant) {
-        this.idEtudiant = idEtudiant;
-    }
-    public String getNomE() {
-        return nomE;
-    }
-    public void setNomE(String nomE) {
-        this.nomE = nomE;
-    }
-    public String getPrenomE() {
-        return prenomE;
-    }
-    public void setPrenomE(String prenomE) {
-        this.prenomE = prenomE;
-    }
-    public Option getOp() {
-        return op;
-    }
-    public void setOp(Option op) {
-        this.op = op;
-    }
 
 }
