@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 import static org.junit.Assert.*;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
@@ -29,7 +30,7 @@ class EtudiantMockitoTest {
 
     private Etudiant etudiant;
 
-    @Before
+    @BeforeEach
     public void setup() {
         etudiant = new Etudiant(1, "Doe", "John");
     }

@@ -1,5 +1,8 @@
 package tn.esprit.spring.kaddem;
-
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -7,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import tn.esprit.spring.kaddem.entities.Etudiant;
-import tn.esprit.spring.kaddem.entities.Option;
 import tn.esprit.spring.kaddem.repositories.EtudiantRepository;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -75,5 +77,29 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
         boolean exists = etudiantRepository.existsById(etudiant.getIdEtudiant());
 
         assertFalse(exists);
+    }
+    @Test
+    void testConstructorWithName() {
+        Etudiant etudiant = new Etudiant("John", "Doe");
+        assertNotNull(etudiant);
+        assertEquals("John", etudiant.getNomE());
+        assertEquals("Doe", etudiant.getPrenomE());
+        assertNull(etudiant.getOp());
+        assertTrue(etudiant.getContrats().isEmpty());
+        assertNull(etudiant.getDepartement());
+        assertTrue(etudiant.getEquipes().isEmpty());
+    }
+
+    @Test
+    void testConstructorWithIdAndName() {
+        Etudiant etudiant = new Etudiant(1, "Jane", "Doe");
+        assertNotNull(etudiant);
+        assertEquals(1, etudiant.getIdEtudiant());
+        assertEquals("Jane", etudiant.getNomE());
+        assertEquals("Doe", etudiant.getPrenomE());
+        assertNull(etudiant.getOp());
+        assertTrue(etudiant.getContrats().isEmpty());
+        assertNull(etudiant.getDepartement());
+        assertTrue(etudiant.getEquipes().isEmpty());
     }
 }
