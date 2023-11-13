@@ -16,6 +16,8 @@
     <properties>
         <java.version>1.8</java.version>
         <maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
+        <micrometer.version>1.7.3</micrometer.version> <!-- Use the latest version -->
+
 
     </properties>
     <dependencies>

@@ -12,11 +12,14 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import tn.esprit.spring.kaddem.dto.EtudiantDTO;
+import tn.esprit.spring.kaddem.entities.Departement;
 import tn.esprit.spring.kaddem.entities.Etudiant;
 import tn.esprit.spring.kaddem.entities.Option;
 import tn.esprit.spring.kaddem.repositories.EtudiantRepository;
 import tn.esprit.spring.kaddem.services.EtudiantServiceImpl;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Optional;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -54,7 +57,21 @@ class EtudiantMockitoTest {
         assertNotNull(found);
         assertEquals("John", found.getPrenomE());
     }
+    @org.junit.jupiter.api.Test
+    void testAllArgsConstructor() {
+        // Assuming Option is an enum with values like GAMIX, SE, SIM, NIDS
+        Option option = Option.GAMIX;
 
+        Etudiant etudiant = new Etudiant(1, "John", "Doe", option, new HashSet<>(), new Departement(), new ArrayList<>());
+
+        assertEquals(1, etudiant.getIdEtudiant());
+        assertEquals("John", etudiant.getNomE());
+        assertEquals("Doe", etudiant.getPrenomE());
+        assertEquals(option, etudiant.getOp());
+        assertNotNull(etudiant.getContrats());
+        assertNotNull(etudiant.getDepartement());
+        assertNotNull(etudiant.getEquipes());
+    }
      @Test
     public void testUpdateEtudiant() {
         when(etudiantRepository.findById(1)).thenReturn(Optional.of(etudiant));
