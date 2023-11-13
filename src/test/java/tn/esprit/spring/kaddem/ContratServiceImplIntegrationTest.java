@@ -11,6 +11,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Configuration;
 import tn.esprit.spring.kaddem.entities.Contrat;
 import tn.esprit.spring.kaddem.entities.Specialite;
 import tn.esprit.spring.kaddem.repositories.ContratRepository;
@@ -24,6 +25,7 @@ import static org.mockito.Mockito.when;
 
 @SpringBootTest
 // @RunWith(MockitoJUnitRunner.class)
+@Configuration
 
 class ContratServiceImplIntegrationTest {
 
