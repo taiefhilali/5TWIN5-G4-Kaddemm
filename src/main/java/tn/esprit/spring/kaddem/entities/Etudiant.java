@@ -2,14 +2,14 @@ package tn.esprit.spring.kaddem.entities;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
+import java.util.HashSet;
+import java.util.ArrayList;
+
 
 import javax.persistence.*;
 
@@ -18,8 +18,9 @@ import javax.persistence.*;
 @Entity
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "etudiant")
 public class Etudiant implements Serializable{
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -34,20 +35,26 @@ public class Etudiant implements Serializable{
     @ManyToOne
     @JsonIgnore
     private Departement departement;
-  //  @ManyToMany(cascade =CascadeType.ALL)
     @ManyToMany(mappedBy="etudiants")
 
     @JsonIgnore
     private List<Equipe> equipes ;
 
-
     public Etudiant(String nomE, String prenomE) {
         this.nomE = nomE;
         this.prenomE = prenomE;
+        // Initialize other fields with default values or null
+        this.op = null; // Assuming 'Option op' is an enum and can be null
+        this.contrats = new HashSet<>(); // Assuming you want an empty set
+        this.departement = null; // Can be null if not yet assigned
+        this.equipes = new ArrayList<>(); // Assuming you want an empty list
     }
 
-
-
+    public Etudiant(int id, String nomE, String prenomE) {
+        this.idEtudiant = id;
+        this.nomE = nomE;
+        this.prenomE = prenomE;
+    }
 
 
 }
