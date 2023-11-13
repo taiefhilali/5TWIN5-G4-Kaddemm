@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
 @Transactional
-public class DepartemmenistTests {
+ class DepartemmenistTests {
     @Autowired
     private DepartementRepository departementRepository;
 
@@ -88,7 +88,12 @@ public class DepartemmenistTests {
 
     }
 
-
+    @Test
+    void testDepartementConstructor() {
+        Departement departement = new Departement("Test Departement");
+        assertNull(departement.getIdDepart()); // id should be null for a new entity
+        assertEquals("Test Departement", departement.getNomDepart());
+    }
 
 
     @Test
