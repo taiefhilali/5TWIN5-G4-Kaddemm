@@ -8,7 +8,7 @@ import tn.esprit.spring.kaddem.entities.Equipe;
 import tn.esprit.spring.kaddem.services.IEquipeService;
 
 import java.util.List;
-@CrossOrigin
+
 @RestController
 @AllArgsConstructor
 @RequestMapping("/equipe")
