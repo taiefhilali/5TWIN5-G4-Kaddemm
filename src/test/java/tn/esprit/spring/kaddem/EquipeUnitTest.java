@@ -23,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @Transactional
-public class EquipeUnitTest {
+ class EquipeUnitTest {
 
     @BeforeEach
     public void setUp() {
@@ -37,7 +37,7 @@ public class EquipeUnitTest {
 
 
     @Test
-    public void testAddEquipe() {
+     void testAddEquipe() {
 
         Equipe equipe = new Equipe();
         equipe.setNomEquipe("Test Team");
@@ -52,7 +52,7 @@ public class EquipeUnitTest {
     }
 
     @Test
-    public void testUpdateEquipe() {
+     void testUpdateEquipe() {
 
         Equipe equipe = new Equipe();
         equipe.setNomEquipe("Test Update");
@@ -68,7 +68,7 @@ public class EquipeUnitTest {
     }
 
     @Test
-    public void testDeleteEquipe() {
+     void testDeleteEquipe() {
 
         Equipe equipe = new Equipe();
         equipe.setNomEquipe("Test Delete");
@@ -83,7 +83,7 @@ public class EquipeUnitTest {
     }
 
     @Test
-    public void testRetrieveAllEquipes() {
+     void testRetrieveAllEquipes() {
 
         Equipe equipe1 = new Equipe();
         equipe1.setNomEquipe("TeamRetrieve");
@@ -103,7 +103,7 @@ public class EquipeUnitTest {
     }
 
     @Test
-    public void testRetrieveEquipe() {
+     void testRetrieveEquipe() {
 
         Equipe equipe = new Equipe();
         equipe.setNomEquipe("Team 3");

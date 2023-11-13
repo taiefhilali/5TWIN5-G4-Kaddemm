@@ -8,12 +8,13 @@ import tn.esprit.spring.kaddem.entities.Equipe;
 import tn.esprit.spring.kaddem.services.IEquipeService;
 
 import java.util.List;
-
+@CrossOrigin
 @RestController
 @AllArgsConstructor
 @RequestMapping("/equipe")
 public class EquipeRestController {
 	IEquipeService equipeService;
+
 	@GetMapping("/retrieve-all-equipes")
 	public List<Equipe> getEquipes() {
 		return equipeService.retrieveAllEquipes();

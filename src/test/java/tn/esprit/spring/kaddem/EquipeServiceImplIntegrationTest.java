@@ -19,7 +19,7 @@ import static org.mockito.Mockito.when;
 
 @SpringBootTest
 
-public class EquipeServiceImplIntegrationTest {
+ class EquipeServiceImplIntegrationTest {
         @Mock
         private EquipeRepository equipeRepository;
 
@@ -28,7 +28,7 @@ public class EquipeServiceImplIntegrationTest {
 
 
         @Test
-        public void testAddEquipe() {
+         void testAddEquipe() {
 
             Equipe equipe = new Equipe();
             equipe.setNomEquipe("Test Team");
@@ -45,7 +45,7 @@ public class EquipeServiceImplIntegrationTest {
         }
 
         @Test
-        public void testUpdateEquipe() {
+         void testUpdateEquipe() {
             Equipe equipe = new Equipe();
             equipe.setNomEquipe("Test Update");
             equipe.setNiveau(Niveau.JUNIOR);
@@ -67,7 +67,7 @@ public class EquipeServiceImplIntegrationTest {
 
 
         @Test
-        public void testRetrieveAllEquipes() {
+         void testRetrieveAllEquipes() {
 
             Equipe equipe1 = new Equipe();
             equipe1.setNomEquipe("Team 1");
@@ -91,7 +91,7 @@ public class EquipeServiceImplIntegrationTest {
         }
 
         @Test
-        public void testRetrieveEquipe() {
+         void testRetrieveEquipe() {
 
             Equipe equipe = new Equipe();
             equipe.setNomEquipe("Team 3");
