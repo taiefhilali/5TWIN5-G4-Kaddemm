@@ -117,6 +117,17 @@
                             <goal>report</goal>
                         </goals>
                     </execution>
+                    <execution>
+                        <id>post-integration-test</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                        <configuration>
+                            <dataFile>${project.build.directory}/coverage-reports/jacoco-it.exec</dataFile>
+                            <!-- Additional configurations if needed -->
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
             <plugin>
