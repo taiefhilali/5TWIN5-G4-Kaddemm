@@ -11,8 +11,10 @@ import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Configuration;
+import tn.esprit.spring.kaddem.dto.EtudiantDTO;
 import tn.esprit.spring.kaddem.entities.Contrat;
 import tn.esprit.spring.kaddem.entities.Etudiant;
+import tn.esprit.spring.kaddem.entities.Option;
 import tn.esprit.spring.kaddem.entities.Specialite;
 import tn.esprit.spring.kaddem.repositories.ContratRepository;
 import tn.esprit.spring.kaddem.services.ContratServiceImpl;
@@ -136,5 +138,20 @@ import static org.mockito.Mockito.when;
         assertTrue(etudiant.getContrats().isEmpty());
         assertNull(etudiant.getDepartement());
         assertTrue(etudiant.getEquipes().isEmpty());
+    }
+    @Test
+    void testSetAndGetOp() {
+        // Create an EtudiantDTO object
+        EtudiantDTO etudiantDTO = new EtudiantDTO();
+
+        // Set the Option field
+        Option option = Option.GAMIX;
+        etudiantDTO.setOp(option);
+
+        // Get the Option field
+        Option retrievedOption = etudiantDTO.getOp();
+
+        // Assertions
+        assertEquals(option, retrievedOption);
     }
 }
