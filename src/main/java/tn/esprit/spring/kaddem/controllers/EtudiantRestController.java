@@ -12,13 +12,14 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/etudiant")
+@CrossOrigin(origins= "http://172.10.0.140:8080")
 public class EtudiantRestController {
 	@Autowired
 	IEtudiantService etudiantService;
 	// http://localhost:8089/Kaddem/etudiant/retrieve-all-etudiants
 	@GetMapping("/retrieve-all-etudiants")
 	public List<Etudiant> getEtudiants() {
-      return etudiantService.retrieveAllEtudiants();
+		return etudiantService.retrieveAllEtudiants();
 	}
 	// http://localhost:8089/Kaddem/etudiant/retrieve-etudiant/8
 	@GetMapping("/retrieve-etudiant/{etudiant-id}")
@@ -73,11 +74,11 @@ public class EtudiantRestController {
 	@PutMapping(value="/affecter-etudiant-departement/{etudiantId}/{departementId}")
 	public void affecterEtudiantToDepartement(@PathVariable("etudiantId") Integer etudiantId, @PathVariable("departementId")Integer departementId){
 		etudiantService.assignEtudiantToDepartement(etudiantId, departementId);
-    }
-//addAndAssignEtudiantToEquipeAndContract(Etudiant e, Integer idContrat, Integer idEquipe)
-    /* Ajouter un étudiant tout en lui affectant un contrat et une équipe */
-    @PostMapping("/add-assign-Etudiant/{idContrat}/{idEquipe}")
-    @ResponseBody
+	}
+	//addAndAssignEtudiantToEquipeAndContract(Etudiant e, Integer idContrat, Integer idEquipe)
+	/* Ajouter un étudiant tout en lui affectant un contrat et une équipe */
+	@PostMapping("/add-assign-Etudiant/{idContrat}/{idEquipe}")
+	@ResponseBody
 	public Etudiant addEtudiantWithEquipeAndContract(@RequestBody EtudiantDTO etudiantDTO,
 													 @PathVariable("idContrat") Integer idContrat,
 													 @PathVariable("idEquipe") Integer idEquipe) {
@@ -100,5 +101,4 @@ public class EtudiantRestController {
 	}
 
 }
-
 
