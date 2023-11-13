@@ -10,16 +10,14 @@
     </parent>
     <groupId>tn.esprit.spring</groupId>
     <artifactId>kaddem</artifactId>
-<!--<version>3.1.0</version>-->
-	    <version>1.1.0-SNAPSHOT</version>
-
+<version>3.1.0</version>
     <name>kaddem</name>
     <description>kaddem</description>
     <properties>
         <java.version>1.8</java.version>
 	    		<maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
 	    <!-- Jacoco -->
-	   
+	     
     </properties>
     <dependencies>
         <dependency>
@@ -87,62 +85,59 @@
 		<repository>
 			<id>deploymentRepo</id>
 			<name>Nexus Repository</name>
-			<!--<url>http://172.10.0.140:8081/repository/maven-releases/</url>-->
-			<url>http://172.10.0.140:8081/repository/maven-snapshots/</url>
+			<url>http://172.10.0.140:8081/repository/maven-releases/</url>
 		</repository>
 	</distributionManagement>
 
-   <build>
-           <plugins>
-             <plugin>
-               <groupId>org.apache.maven.plugins</groupId>
-               <artifactId>maven-compiler-plugin</artifactId>
-               <version>3.1</version>
-               <configuration>
-                         <source>1.8</source>
-                         <target>1.8</target>
-               </configuration>
-             </plugin>
-              <plugin>
-               <groupId>org.sonarsource.scanner.maven</groupId>
-               <artifactId>sonar-maven-plugin</artifactId>
-               <version>3.7.0.1746</version>
-             </plugin>
-
-             </plugins>
-     </build>
-
-     <profile>
-       <id>coverage</id>
-       <build>
+    <build>
         <plugins>
-         <plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <exclude>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+		
+<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.8.6</version>
+				<executions>
+					<!--first execution : for preparing JaCoCo runtime agent-->
+					<execution>
+						<id>prepare-agent</id>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<!--second execution : for creating code coverage reports-->
+					<execution>
+						<id>report</id>
+						<phase>test</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		
+
+		<plugin>
                <groupId>org.sonarsource.scanner.maven</groupId>
                <artifactId>sonar-maven-plugin</artifactId>
                <version>3.7.0.1746</version>
              </plugin>
-         <plugin>
-         <groupId>org.jacoco</groupId>
-         <artifactId>jacoco-maven-plugin</artifactId>
-         <version>0.8.6</version>
-         <executions>
-           <execution>
-             <id>prepare-agent</id>
-             <goals>
-              <goal>prepare-agent</goal>
-             </goals>
-           </execution>
-           <execution>
-             <id>report</id>
-             <goals>
-              <goal>report</goal>
-             </goals>
-           </execution>
-         </executions>
-         </plugin>
+       
+
         </plugins>
-       </build>
-     </profile>
-</profiles>
+
+	   
+    </build>
 
 </project>
