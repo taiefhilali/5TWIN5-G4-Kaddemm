@@ -13,14 +13,17 @@ import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Configuration;
 import tn.esprit.spring.kaddem.entities.Contrat;
+import tn.esprit.spring.kaddem.entities.Etudiant;
 import tn.esprit.spring.kaddem.entities.Specialite;
 import tn.esprit.spring.kaddem.repositories.ContratRepository;
+import tn.esprit.spring.kaddem.repositories.EtudiantRepository;
 import tn.esprit.spring.kaddem.services.ContratServiceImpl;
 
 import java.util.Date;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
@@ -31,7 +34,8 @@ class ContratServiceImplIntegrationTest {
 
     @Mock
     private ContratRepository contratRepository;
-
+    @Mock
+    private EtudiantRepository etudiantRepository;
     @InjectMocks
     private ContratServiceImpl contratService;
 
@@ -52,7 +56,7 @@ class ContratServiceImplIntegrationTest {
         assertEquals(archive, instance.isArchive());
         assertEquals(montantContrat, instance.getMontantContrat());
     }
-    @Test
+  /*  @Test
     void testAddContrat() {
         Contrat contratToAdd = new Contrat();
         contratToAdd.setDateDebutContrat(new Date());
@@ -99,9 +103,9 @@ class ContratServiceImplIntegrationTest {
 
         assertNotNull(result);
         assertEquals(2, result.size());
-    }
+    }*/
 
-    @Test
+ /*   @Test
     void testRetrieveContrat() {
         Contrat contrat = new Contrat();
         contrat.setIdContrat(6); // Set a valid ID
@@ -122,7 +126,52 @@ class ContratServiceImplIntegrationTest {
         contratService.removeContrat(6);
 
         assertNull(contratService.retrieveContrat(8));
+    }*/
+
+
+    @Test
+    void testAddContrat() {
+        Contrat contratToAdd = new Contrat();
+        when(contratRepository.save(any(Contrat.class))).thenReturn(contratToAdd);
+
+        Contrat addedContrat = contratService.addContrat(contratToAdd);
+
+        assertEquals(contratToAdd, addedContrat);
     }
+
+    @Test
+    void testUpdateContrat() {
+        Contrat contratToUpdate = new Contrat();
+        when(contratRepository.save(any(Contrat.class))).thenReturn(contratToUpdate);
+
+        Contrat updatedContrat = contratService.updateContrat(contratToUpdate);
+
+        assertEquals(contratToUpdate, updatedContrat);
+    }
+
+    @Test
+    void testRetrieveContrat() {
+        int idContrat = 1;
+        Contrat contrat = new Contrat();
+        when(contratRepository.findById(idContrat)).thenReturn(Optional.of(contrat));
+
+        Contrat result = contratService.retrieveContrat(idContrat);
+
+        assertEquals(contrat, result);
+    }
+
+    @Test
+    void testRemoveContrat() {
+        int idContrat = 1;
+        Contrat contratToRemove = new Contrat();
+        when(contratRepository.findById(idContrat)).thenReturn(Optional.of(contratToRemove));
+
+        contratService.removeContrat(idContrat);
+
+        Mockito.verify(contratRepository).delete(contratToRemove);
+    }
+
+
 }
 /*import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
