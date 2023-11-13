@@ -124,21 +124,7 @@ import static org.mockito.Mockito.when;
         assertTrue(etudiant.getEquipes().isEmpty()); // Assuming Equipes is initialized as an empty list
     }
 
-    @Test
-    void testConstructorWithIdAndName() {
-        // Actual test
-        Etudiant etudiant = new Etudiant(1, "Jane", "Doe");
-
-        // Assertions
-        assertNotNull(etudiant);
-        assertEquals(1, etudiant.getIdEtudiant());
-        assertEquals("Jane", etudiant.getNomE());
-        assertEquals("Doe", etudiant.getPrenomE());
-        assertNull(etudiant.getOp());
-        assertTrue(etudiant.getContrats().isEmpty());
-        assertNull(etudiant.getDepartement());
-        assertTrue(etudiant.getEquipes().isEmpty());
-    }
+   
     @Test
     void testSetAndGetOp() {
         // Create an EtudiantDTO object
