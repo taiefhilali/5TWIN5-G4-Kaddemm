@@ -1,7 +1,4 @@
-tn\esprit\spring\kaddem\EtudiantMockitoTest.class
 tn\esprit\spring\kaddem\ContratunistTests.class
-tn\esprit\spring\kaddem\EtudiantJUnitTest.class
+tn\esprit\spring\kaddem\ContratServiceImplIntegrationTest.class
 tn\esprit\spring\kaddem\DepartemmenistTests.class
 tn\esprit\spring\kaddem\DepartementServiceImpIntegrationTest.class
-tn\esprit\spring\kaddem\ContratServiceImplIntegrationTest.class
-tn\esprit\spring\kaddem\TestsEtudiantService.class
