@@ -27,10 +27,10 @@ public class EtudiantServiceImpl implements IEtudiantService{
 	ContratRepository contratRepository;
 	@Autowired
 	EquipeRepository equipeRepository;
-    @Autowired
-    DepartementRepository departementRepository;
+	@Autowired
+	DepartementRepository departementRepository;
 	public List<Etudiant> retrieveAllEtudiants(){
-	return (List<Etudiant>) etudiantRepository.findAll();
+		return (List<Etudiant>) etudiantRepository.findAll();
 	}
 
 	public Etudiant addEtudiant (Etudiant e){
@@ -55,8 +55,8 @@ public class EtudiantServiceImpl implements IEtudiantService{
 
 
 	public void removeEtudiant(Integer idEtudiant){
-	Etudiant e=retrieveEtudiant(idEtudiant);
-	etudiantRepository.delete(e);
+		Etudiant e=retrieveEtudiant(idEtudiant);
+		etudiantRepository.delete(e);
 	}
 
 	public void assignEtudiantToDepartement(Integer etudiantId, Integer departementId) {
@@ -95,6 +95,6 @@ public class EtudiantServiceImpl implements IEtudiantService{
 
 
 	public 	List<Etudiant> getEtudiantsByDepartement (Integer idDepartement){
-return  etudiantRepository.findEtudiantsByDepartement_IdDepart((idDepartement));
+		return  etudiantRepository.findEtudiantsByDepartementIdDepart((idDepartement));
 	}
 }

@@ -10,7 +10,11 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Configuration;
+import tn.esprit.spring.kaddem.dto.EtudiantDTO;
 import tn.esprit.spring.kaddem.entities.Contrat;
+import tn.esprit.spring.kaddem.entities.Etudiant;
+import tn.esprit.spring.kaddem.entities.Option;
 import tn.esprit.spring.kaddem.entities.Specialite;
 import tn.esprit.spring.kaddem.repositories.ContratRepository;
 import tn.esprit.spring.kaddem.services.ContratServiceImpl;
@@ -24,7 +28,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 @SpringBootTest
 @Transactional
- class ContratunistTests {
+@Configuration
+class ContratunistTests {
     @Autowired
     private ContratRepository contratRepository;
 
@@ -102,4 +107,8 @@ import static org.mockito.Mockito.when;
 
         assertNull(removedContrat);
 
-}}
+    }
+
+
+
+}

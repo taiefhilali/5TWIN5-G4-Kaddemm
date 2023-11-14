@@ -1,5 +1,8 @@
 package tn.esprit.spring.kaddem;
-
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,24 +18,24 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest
 @ActiveProfiles("test")
- class EtudiantJUnitTest {
+class EtudiantJUnitTest {
 
     @Autowired
     private EtudiantRepository etudiantRepository;
 
 
     @BeforeEach
-   public  void setUp() {
+    public  void setUp() {
         etudiantRepository.deleteAll();
     }
 
     @AfterEach
-   public  void tearDown() {
+    public  void tearDown() {
         etudiantRepository.deleteAll();
     }
 
     @Test
-     void SaveEtudiant() {
+    void SaveEtudiant() {
         Etudiant etudiant = new Etudiant("Zeineb", "Haraketi");
         Etudiant savedEtudiant = etudiantRepository.save(etudiant);
 
@@ -41,7 +44,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
     }
 
     @Test
-     void FindEtudiantById() {
+    void FindEtudiantById() {
         Etudiant etudiant = new Etudiant("Zeineb", "Haraketi");
         etudiant = etudiantRepository.save(etudiant);
 
@@ -52,7 +55,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
     }
 
     @Test
-     void UpdateEtudiant() {
+    void UpdateEtudiant() {
         Etudiant etudiant = new Etudiant("Zeineb", "Haraketi");
         etudiant = etudiantRepository.save(etudiant);
 
@@ -65,7 +68,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
     }
 
     @Test
-     void DeleteEtudiant() {
+    void DeleteEtudiant() {
         Etudiant etudiant = new Etudiant("Zeineb", "Haraketi");
         etudiant = etudiantRepository.save(etudiant);
 
@@ -75,4 +78,17 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
         assertFalse(exists);
     }
+    @Test
+    void testConstructorWithName() {
+        Etudiant etudiant = new Etudiant("John", "Doe");
+        assertNotNull(etudiant);
+        assertEquals("John", etudiant.getNomE());
+        assertEquals("Doe", etudiant.getPrenomE());
+        assertNull(etudiant.getOp());
+        assertTrue(etudiant.getContrats().isEmpty());
+        assertNull(etudiant.getDepartement());
+        assertTrue(etudiant.getEquipes().isEmpty());
+    }
+
+
 }

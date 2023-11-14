@@ -13,9 +13,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
-class TestsEtudiantService {
+
+class TestsEtudiantService{
 
     @Mock
     private EtudiantRepository etudiantRepository;
@@ -43,14 +44,14 @@ class TestsEtudiantService {
 
     @Test
     void testRetrieveAllEtudiantsWithoutMock() {
-        // Arrange
+        // Arrange: Assuming you have some test data in your repository
         Etudiant etudiant1 = new Etudiant("John", "Doe");
         Etudiant etudiant2 = new Etudiant("Jane", "Smith");
 
+        // Stub the repository's behavior
         List<Etudiant> etudiants = new ArrayList<>();
         etudiants.add(etudiant1);
         etudiants.add(etudiant2);
-        
         when(etudiantRepository.findAll()).thenReturn(etudiants);
 
         // Act
@@ -59,4 +60,9 @@ class TestsEtudiantService {
         // Assert
         assertEquals(2, retrievedEtudiants.size());
     }
+
+
+
+
+
 }

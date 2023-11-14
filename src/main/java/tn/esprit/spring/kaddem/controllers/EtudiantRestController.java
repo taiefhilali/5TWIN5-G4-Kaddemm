@@ -12,7 +12,6 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/etudiant")
-@CrossOrigin(origins= "http://172.10.0.140:8080")
 public class EtudiantRestController {
 	@Autowired
 	IEtudiantService etudiantService;
@@ -101,4 +100,3 @@ public class EtudiantRestController {
 	}
 
 }
-
