@@ -27,4 +27,20 @@ public class Contrat implements Serializable{
     @ManyToOne(cascade = CascadeType.ALL)
     private Etudiant etudiant;
 
+    public Contrat(Date dateDebutContrat, Date dateFinContrat, Specialite specialite, Boolean archive,
+                   Integer montantContrat) {
+        super();
+        this.dateDebutContrat = dateDebutContrat;
+        this.dateFinContrat = dateFinContrat;
+        this.specialite = specialite;
+        this.archive = archive;
+        this.montantContrat = montantContrat;
+    }
+
+
+    public boolean isArchive() {
+        return archive;
+    }
+
+
 }
