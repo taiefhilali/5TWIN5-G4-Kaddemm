@@ -2,9 +2,9 @@ version: "3.9"
 
 services:
   5TWIN5-G4-KADDEMM:
-    container_name: KADDEMM
+    container_name: KADDEMMM
     ports:
-      - "8089:8089"
+      - "8083:8089"
     environment:
       - SPRING_DATASOURCE_URL=jdbc:jdbc:mysql://db-mysql:3306/kaddem?createDatabaseIfNotExist=true&useSSL=false&max_allowed_packet=15728640&allowPublicKeyRetrieval=true
       - SPRING_DATASOURCE_USERNAME=root
@@ -16,9 +16,9 @@ services:
 
   db-mysql:
     image: "mysql:latest"
-    container_name: db-mysql
+    container_name: db-mysqll
     environment:
       - MYSQL_ROOT_PASSWORD=root
     ports:
-      - "3306:3306"
+      - "3307:3306"
     restart: unless-stopped
