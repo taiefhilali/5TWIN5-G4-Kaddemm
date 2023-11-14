@@ -38,4 +38,6 @@ public class Etudiant implements Serializable{
     @JsonIgnore
     private List<Equipe> equipes ;
 
+    public Etudiant(String zeineb, String haraketi) {
+    }
 }

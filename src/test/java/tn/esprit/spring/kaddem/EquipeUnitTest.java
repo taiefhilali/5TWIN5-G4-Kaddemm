@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import tn.esprit.spring.kaddem.entities.Departement;
 import tn.esprit.spring.kaddem.entities.DetailEquipe;
 import tn.esprit.spring.kaddem.entities.Equipe;
 import tn.esprit.spring.kaddem.entities.Niveau;
@@ -19,7 +20,10 @@ import javax.validation.ValidatorFactory;
 import java.util.List;
 import java.util.Set;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import static org.junit.jupiter.api.Assertions.*;
+import static tn.esprit.spring.kaddem.entities.Niveau.SENIOR;
 
 @SpringBootTest
 @Transactional
@@ -60,7 +64,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
         Equipe savedEquipe = equipeRepository.save(equipe);
 
-        savedEquipe.setNiveau(Niveau.SENIOR);
+        savedEquipe.setNiveau(SENIOR);
 
         Equipe updatedEquipe = equipeService.updateEquipe(savedEquipe);
 
@@ -92,7 +96,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
         Equipe equipe2 = new Equipe();
         equipe2.setNomEquipe("TeamRetrieve 2");
-        equipe2.setNiveau(Niveau.SENIOR);
+        equipe2.setNiveau(SENIOR);
         equipeRepository.save(equipe2);
 
         List<Equipe> equipes = equipeService.retrieveAllEquipes();
@@ -107,16 +111,15 @@ import static org.junit.jupiter.api.Assertions.*;
 
         Equipe equipe = new Equipe();
         equipe.setNomEquipe("Team 3");
-        equipe.setNiveau(Niveau.SENIOR);
+        equipe.setNiveau(SENIOR);
         equipe = equipeRepository.save(equipe);
 
         Equipe retrievedEquipe = equipeService.retrieveEquipe(equipe.getIdEquipe());
 
         assertNotNull(retrievedEquipe);
         assertEquals("Team 3", retrievedEquipe.getNomEquipe());
-        assertEquals(Niveau.SENIOR, retrievedEquipe.getNiveau());
+        assertEquals(SENIOR, retrievedEquipe.getNiveau());
     }
-
 
 
 }

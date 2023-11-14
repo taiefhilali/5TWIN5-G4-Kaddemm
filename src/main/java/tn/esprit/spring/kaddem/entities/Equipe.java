@@ -30,4 +30,6 @@ public class Equipe implements Serializable{
     private DetailEquipe detailEquipe;
 
 
+    public Equipe(String test_departement, Niveau senior) {
+    }
 }

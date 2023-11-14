@@ -1,6 +1,7 @@
 package tn.esprit.spring.kaddem.controllers;
 
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.spring.kaddem.dtos.EtudiantDTO;
@@ -14,6 +15,7 @@ import tn.esprit.spring.kaddem.services.IEtudiantService;
 import java.util.List;
 
 @RestController
+@NoArgsConstructor
 @AllArgsConstructor
 @RequestMapping("/etudiant")
 public class EtudiantRestController {
