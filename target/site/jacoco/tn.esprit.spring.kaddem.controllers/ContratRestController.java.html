@@ -88,20 +88,20 @@ import java.util.List;
 
 	@PutMapping(value = &quot;/assignContratToEtudiant/{idContrat}/{nomE}/{prenomE}&quot;)
 	public Contrat assignContratToEtudiant (Integer idContrat, String nomE, String prenomE){
-		//	Contrat c= contratService.affectContratToEtudiant()
+	//	Contrat c= contratService.affectContratToEtudiant()
 <span class="nc" id="L92">		return 	(contratService.affectContratToEtudiant(idContrat, nomE, prenomE));</span>
 	}
 
 	//The most common ISO Date Format yyyy-MM-dd — for example, &quot;2000-10-31&quot;.
-	@GetMapping(value = &quot;/getnbContratsValides/{startDate}/{endDate}&quot;)
-	public Integer getnbContratsValides(@PathVariable(name = &quot;startDate&quot;) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date startDate,
-										@PathVariable(name = &quot;endDate&quot;) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date endDate) {
+		@GetMapping(value = &quot;/getnbContratsValides/{startDate}/{endDate}&quot;)
+		public Integer getnbContratsValides(@PathVariable(name = &quot;startDate&quot;) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date startDate,
+										  @PathVariable(name = &quot;endDate&quot;) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date endDate) {
 
-<span class="nc" id="L100">		return contratService.nbContratsValides(startDate, endDate);</span>
-	}
+<span class="nc" id="L100">			return contratService.nbContratsValides(startDate, endDate);</span>
+		}
 
-	//Only no-arg methods may be annotated with @Scheduled
-	@Scheduled(cron=&quot;0 0 13 * * *&quot;)//(cron=&quot;0 0 13 * * ?&quot;)(fixedRate =21600)
+    //Only no-arg methods may be annotated with @Scheduled
+    @Scheduled(cron=&quot;0 0 13 * * *&quot;)//(cron=&quot;0 0 13 * * ?&quot;)(fixedRate =21600)
 	@PutMapping(value = &quot;/majStatusContrat&quot;)
 	public void majStatusContrat (){
 <span class="nc" id="L107">		contratService.retrieveAndUpdateStatusContrat();</span>
@@ -113,7 +113,7 @@ import java.util.List;
 	@GetMapping(&quot;/calculChiffreAffaireEntreDeuxDate/{startDate}/{endDate}&quot;)
 	@ResponseBody
 	public float calculChiffreAffaireEntreDeuxDates(@PathVariable(name = &quot;startDate&quot;) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date startDate,
-													@PathVariable(name = &quot;endDate&quot;) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date endDate) {
+	@PathVariable(name = &quot;endDate&quot;) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date endDate) {
 
 <span class="nc" id="L118">		return contratService.getChiffreAffaireEntreDeuxDates(startDate, endDate);</span>
 	}
