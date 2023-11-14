@@ -4,7 +4,8 @@ import static org.mockito.Mockito.times;
 
 import java.util.Arrays;
 
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
+
 import java.util.List;
 
 import org.mockito.InjectMocks;
@@ -27,6 +28,7 @@ import static org.mockito.Mockito.when;
 
 @SpringBootTest
 @Configuration
+
 class ContratServiceImplIntegrationTest {
 
     @Mock
@@ -37,6 +39,7 @@ class ContratServiceImplIntegrationTest {
     private ContratServiceImpl contratService;
 
     @Test
+
     void testConstructorWithValidValues() {
         Date dateDebutContrat = new Date();
         Date dateFinContrat = new Date();

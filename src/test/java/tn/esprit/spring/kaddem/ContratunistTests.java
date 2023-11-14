@@ -3,8 +3,10 @@ package tn.esprit.spring.kaddem;
 import java.text.SimpleDateFormat;
 import java.util.Arrays; // Import Arrays
 
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
+
 import java.util.List; // Make sure to import the correct List class
+
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -29,6 +31,8 @@ import static org.mockito.Mockito.when;
 @SpringBootTest
 @Transactional
 @Configuration
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+
  class ContratunistTests {
     @Autowired
     private ContratRepository contratRepository;
@@ -36,6 +40,8 @@ import static org.mockito.Mockito.when;
     @Autowired
     private ContratServiceImpl contratService;
     @Test
+    @BeforeEach
+    @Order(1)
     void testAddContrat() {
         Contrat contratToAdd = new Contrat();
         contratToAdd.setDateDebutContrat(new Date());
@@ -54,6 +60,8 @@ import static org.mockito.Mockito.when;
         assertEquals(contratToAdd.getMontantContrat(), addedContrat.getMontantContrat());
     }
     @Test
+    @Order(2)
+
     void testUpdateContrat() {
         Contrat contratToUpdate = new Contrat();
         contratToUpdate.setDateDebutContrat(new Date());
@@ -69,6 +77,8 @@ import static org.mockito.Mockito.when;
         assertNotNull(updatedContrat);
     }
     @Test
+    @Order(3)
+
     void testRetrieveAllContrats() {
         List<Contrat> result = contratService.retrieveAllContrats();
 
@@ -76,6 +86,8 @@ import static org.mockito.Mockito.when;
     }
 
     @Test
+    @Order(4)
+
     void testRetrieveContrat() {
         Contrat contrat = new Contrat();
         contrat.setDateDebutContrat(new Date());
@@ -91,6 +103,8 @@ import static org.mockito.Mockito.when;
         assertNotNull(result);
     }
     @Test
+    @Order(5)
+
     void testRemoveContrat() {
         Contrat contrat = new Contrat();
         contrat.setDateDebutContrat(new Date());
